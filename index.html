@@ -48,42 +48,43 @@
           <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div id="homeTab">
               <form class="needs-validation" novalidate id="formStart">
-                <div class ="form-row">
+                <div class="form-row">
                   <label for="zipCodeInput">Zip Code:</label>
                 </div>
-                <div class = "form-row">
+                <div class="form-row">
                   <input class="form-control col-2" type="number" id="zipCodeInput" placeholder="Zip Code" required>
                 </div>
 
-                <div class = "form-row">
+                <div class="form-row">
                   <label for="dateInput">Date:</label>
                 </div>
-                <div class ="form-row">
+                <div class="form-row">
                   <input class="form-control col-2" type="date" id="dateInput" placeholder="Date" required>
                 </div>
 
-                <div class = "form-row">
-                  <label for = "startTimeInput">Start Time:</label>
+                <div class="form-row">
+                  <label for="startTimeInput">Start Time:</label>
                 </div>
-                <div class = "form-row">
-                  <input class = "form-control col-2" type="time" id = "startTimeInput" placeholder="Start Time" required>
-                </div>
-
-                <div class = "form-row">
-                  <label for = "endTimeInput">End Time:</label>
-                </div>
-                <div class = "form-row">
-                  <input class = "form-control col-2" type="time" id = "endTimeInput" placeholder="End Time" required>
-                </div>
- 
-                <div class = "form-row">
-                  <label for = "movieTitleInput">Movie Title:</label>
-                </div>
-                <div class ="form-row">
-                  <input class = "form-control col-2" type="text" id = "movieTitleInput" placeholder="Movie Search" required>
+                <div class="form-row">
+                  <input class="form-control col-2" type="time" id="startTimeInput" placeholder="Start Time" required>
                 </div>
 
-                <div class = "form-row">
+                <div class="form-row">
+                  <label for="endTimeInput">End Time:</label>
+                </div>
+                <div class="form-row">
+                  <input class="form-control col-2" type="time" id="endTimeInput" placeholder="End Time" required>
+                </div>
+
+                <div class="form-row">
+                  <label for="movieTitleInput">Movie Title:</label>
+                </div>
+                <div class="form-row">
+                  <input class="form-control col-2" type="text" id="movieTitleInput" placeholder="Movie Search"
+                    required>
+                </div>
+
+                <div class="form-row">
                   <input class="btn btn-primary" id="searchButton" type="submit" value="Search">
                 </div>
               </form>
@@ -92,14 +93,11 @@
           <div class="tab-pane fade pt-4" id="theaters" role="tabpanel" aria-labelledby="theaters-tab">
             <h1>Theaters showing <span id="movieTitle">Avengers: Endgame</span> in <span id="movieZipcode">32801</span>
             </h1>
-
             <div id="theaterResults"></div>
 
           </div>
           <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
-
             <h1>Restaurants close to <span id="theaterName">Molly's Movies</span></h1>
-
             <div id="restaurantResults"></div>
           </div>
           <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">...</div>

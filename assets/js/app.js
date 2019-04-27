@@ -96,7 +96,7 @@ function Application() {
   }
 
   this.loadRestaurants = function (address) {
-    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant&sort_by=distance&limit=5&location=" + address;
+    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant&sort_by=distance&limit=3&location=" + address;
     $.ajax({
       url: queryUrl,
       headers: {
@@ -104,10 +104,26 @@ function Application() {
       },
       method: 'GET',
       dataType: 'json',
-    }).done(function(data) {
+    }).done(function (data) {
       self.restaurants = data.businesses
       self.renderRestaurants()
       console.log(data)
     })
   }
+
+  $('.btn-prev').on('click', function () {
+    let tabId = $(this)
+      .closest('div.tab-pane')
+      .prev()
+      .attr('id')
+    $('#myTab a[href="#' + tabId + '"]').tab('show')
+  })
+
+  $('.btn-next').on('click', function () {
+    let tabId = $(this)
+      .closest('div.tab-pane')
+      .next()
+      .attr('id')
+    $('#myTab a[href="#' + tabId + '"]').tab('show')
+  })
 }
