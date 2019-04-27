@@ -1,24 +1,193 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="assets/css/style.css">
-  </head>
-  <body>
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <script src="assets/js/app.js"></script>
-  </body>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">Dinner and a Movie</span>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+              aria-selected="true">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" id="movies-tab" data-toggle="tab" href="#movies" role="tab"
+              aria-controls="movies" aria-selected="false">Movies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
+              aria-controls="restaurants" aria-selected="false">Restaurants</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
+              aria-controls="summary" aria-selected="false">Summary</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+          <div class="tab-pane fade show active pt-4" id="movies" role="tabpanel" aria-labelledby="movies-tab">
+            <h1>Theaters showing <span id="movieTitle">Avengers: Endgame</span> in <span id="movieZipcode">32801</span>
+            </h1>
+
+            <div id="theaterResults">
+
+              <div class="card mt-4">
+                <div class="card-body row">
+                  <div class="col-4">
+                    <h5 class="card-title">Molly's Movies</h5>
+                    <p class="card-text">123 Movie Dr</p>
+                  </div>
+                  <div class="col-8 text-right">
+                    <a href="#" class="btn btn-lg btn-info">6:00p</a>
+                    <a href="#" class="btn btn-lg btn-info">7:00p</a>
+                    <a href="#" class="btn btn-lg btn-info">9:40p</a>
+                    <a href="#" class="btn btn-lg btn-info">10:00p</a>
+                    <a href="#" class="btn btn-lg btn-info">10:50p</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mt-4">
+                <div class="card-body row">
+                  <div class="col-4">
+                    <h5 class="card-title">Molly's Movies</h5>
+                    <p class="card-text">123 Movie Dr</p>
+                  </div>
+                  <div class="col-8 text-right">
+                    <a href="#" class="btn btn-lg btn-info">6:00p</a>
+                    <a href="#" class="btn btn-lg btn-info">7:00p</a>
+                    <a href="#" class="btn btn-lg btn-info">9:40p</a>
+                    <a href="#" class="btn btn-lg btn-info">10:00p</a>
+                    <a href="#" class="btn btn-lg btn-info">10:50p</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mt-4">
+                <div class="card-body row">
+                  <div class="col-4">
+                    <h5 class="card-title">Molly's Movies</h5>
+                    <p class="card-text">123 Movie Dr</p>
+                  </div>
+                  <div class="col-8 text-right">
+                    <a href="#" class="btn btn-lg btn-info">6:00p</a>
+                    <a href="#" class="btn btn-lg btn-info">7:00p</a>
+                    <a href="#" class="btn btn-lg btn-info">9:40p</a>
+                    <a href="#" class="btn btn-lg btn-info">10:00p</a>
+                    <a href="#" class="btn btn-lg btn-info">10:50p</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
+
+            <h1>Restaurants close to <span id="theaterName">Molly's Movies</span></h1>
+
+            <div id="restaurantsResults">
+
+              <div class="card mt-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-4">
+                      <h5 class="card-title">Trevor's Tacos</h5>
+                      <p class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star"></i><i class="fas fa-star text-muted"></i><i
+                          class="fas fa-star text-muted"></i></p>
+                      <p class="card-text">$$$$</p>
+                    </div>
+                    <div class="col-8 text-right card-text">
+                      <p>(407) 201-3583</p>
+                      <p>123 Burrito Rd</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mt-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-4">
+                      <h5 class="card-title">Trevor's Tacos</h5>
+                      <p class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star"></i><i class="fas fa-star text-muted"></i><i
+                          class="fas fa-star text-muted"></i></p>
+                      <p class="card-text">$$$$</p>
+                    </div>
+                    <div class="col-8 text-right card-text">
+                      <p>(407) 201-3583</p>
+                      <p>123 Burrito Rd</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mt-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-4">
+                      <h5 class="card-title">Trevor's Tacos</h5>
+                      <p class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star"></i><i class="fas fa-star text-muted"></i><i
+                          class="fas fa-star text-muted"></i></p>
+                      <p class="card-text">$$$$</p>
+                    </div>
+                    <div class="col-8 text-right card-text">
+                      <p>(407) 201-3583</p>
+                      <p>123 Burrito Rd</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+  <script src="assets/js/app.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      var app = new Application()
+    })
+  </script>
+</body>
+
 </html>
