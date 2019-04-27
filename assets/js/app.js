@@ -4,14 +4,16 @@ function Application() {
   this.date = undefined
   this.startTime = undefined
   this.endTime = undefined
-  this.theaters = []
-  this.restaurants = []
+  this.theaters = [1, 2, 3]
+  this.restaurants = [1, 2, 3]
 
   this.getTheaters = function (zipcode) {
 
   }
 
   this.renderTheaters = function () {
+    let $theaterResults = $('#theaterResults')
+    $theaterResults.empty()
     this.theaters.forEach(theater => {
       let name = $('<h5>')
         .addClass('card-title')
@@ -30,7 +32,7 @@ function Application() {
       let card = $('<div>')
         .addClass('card mt-4')
         .append(cardBody)
-      $('#theaterResults').append(card)
+      $theaterResults.append(card)
     })
   }
 
@@ -39,12 +41,15 @@ function Application() {
   }
 
   this.renderRestaurants = function () {
+    let $restaurantResults = $('#restaurantResults')
+    $restaurantResults.empty()
     this.restaurants.forEach(restaurant => {
       let name = $('<h5>')
         .addClass('card-title')
         .text("Trevor's Tacos")
       let rating = $('<p>')
         .addClass('card-text')
+        .html('<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star text-muted"></i><i class="fas fa-star text-muted"></i></p>')
       let cost = $('<p>')
         .addClass('card-text')
         .text('$$$$')
@@ -64,7 +69,7 @@ function Application() {
       let card = $('<div>')
         .addClass('card mt-4')
         .append(cardBody)
-      $('#theaterResults').append(card)
+      $restaurantResults.append(card)
     })
   }
 }
