@@ -6,10 +6,9 @@ function Application() {
   this.endTime = undefined
   this.theaters = [1, 2, 3]
   this.restaurants = [1, 2, 3]
+  let yelpApi = 'cqri1UB-gnIXTN3mPx4GAi4vRAEpWc7KDG3n3HS2uC6nNBaG45cH3_8Wi7aPN1v5GHjHihhJ5MVWUHC1f8N1muxqS8Muqtp9FdqtWe3FVvY3CI0uDVpshApC41nEXHYx'
 
-  this.getTheaters = function (zipcode) {
-
-  }
+  this.getTheaters = function (zipcode) {}
 
   this.renderTheaters = function () {
     let $theaterResults = $('#theaterResults')
@@ -37,7 +36,19 @@ function Application() {
   }
 
   this.getRestaurants = function (address) {
+    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant&radius=5000&sort_by=distance&limit=5&location=" + address;
 
+    $.ajax({
+      url: queryUrl,
+      headers: {
+        'Authorization': 'Bearer ' + yelpApi,
+      },
+      method: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        console.log(data)
+      }
+    });
   }
 
   this.renderRestaurants = function () {
