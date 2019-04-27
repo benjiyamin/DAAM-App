@@ -48,11 +48,12 @@
           <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div id="homeTab">
               <form class="needs-validation" novalidate id="formStart">
-                <div class ="form-row">
+                <div class="form-row">
                   <label for="zipCodeInput">Zip Code:</label>
                 </div>
-                <div class = "form-row">
-                  <input class="form-control col-2" type="number" id="zipCodeInput" placeholder="Zip Code" value="32801" required>
+                <div class="form-row">
+                  <input class="form-control col-2" type="number" id="zipCodeInput" placeholder="Zip Code" value="32801"
+                    required>
                 </div>
                 <br>
                 <br>
@@ -79,6 +80,11 @@
                 <input class="btn btn-primary" id="searchButton" type="submit" value="Search">
               </form>
             </div>
+
+            <br>
+            <button type="button" class="btn btn-primary btn-lg btn-next">Next</button>
+            
+
           </div>
           <div class="tab-pane fade pt-4" id="theaters" role="tabpanel" aria-labelledby="theaters-tab">
             <h1>Theaters showing <span id="movieTitle">Avengers: Endgame</span> in <span id="movieZipcode">32801</span>
@@ -86,55 +92,74 @@
 
             <div id="theaterResults"></div>
 
+            <br>
+            <button type="button" class="btn btn-secondary btn-lg btn-prev">Previous</button>
+            <button type="button" class="btn btn-primary btn-lg btn-next">Next</button>
+
           </div>
           <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
 
             <h1>Restaurants close to <span id="theaterName">Molly's Movies</span></h1>
 
             <div id="restaurantResults"></div>
+
+            <br>
+            <button type="button" class="btn btn-secondary btn-lg btn-prev">Previous</button>
+            <button type="button" class="btn btn-primary btn-lg btn-next">Next</button>
+
           </div>
           <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+
+            <br>
+            <h1>Summary Page</h1>
+            <br>
+
             <h1>Your Movie selection is: <span id="mSelect">
-              <div class="card mt-4">
-                <div class="card-body row">
-                  <div class="col-4">
-                    <h5 class="card-title" id="movie-display">cookie</h5>
-                    <p class="card-text" id="address-display">address</p>
-                  </div>
-                  <div class="col-8 text-right">
-                    <a href="#" class="btn btn-lg btn-info" id="time-display">5:00PM</a>
-                  </div>
-                </div>
-              </div>
-            </span></h1>
-
-          <h1 id="restaurants-display">Your Restaurant selection is: <span id="rSelect">
-              <div class="card mt-4">
-                <div class="card-body">
-                  <div class="row">
+                <div class="card mt-4">
+                  <div class="card-body row">
                     <div class="col-4">
-                      <h5 class="card-title" id="restaurant-display">Cookie Factory</h5>
+                      <h5 class="card-title" id="movie-display">cookie</h5>
+                      <p class="card-text" id="address-display">address</p>
                     </div>
-                    <div class="col-8 text-right card-text">
-                      <p id="restNumber-display">###</p>
-                      <p id="restAddress-display">address</p>
+                    <div class="col-8 text-right">
+                      <a href="#" class="btn btn-lg btn-info" id="time-display">5:00PM</a>
                     </div>
                   </div>
                 </div>
-              </div>
-            </span></h1>
+              </span></h1>
 
-          <h1>Your Uber estimate is: <span id="uSelect">
-              <div class="card mt-4">
+            <h1 id="restaurants-display">Your Restaurant selection is: <span id="rSelect">
+                <div class="card mt-4">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-4">
+                        <h5 class="card-title" id="restaurant-display">Cookie Factory</h5>
+                      </div>
+                      <div class="col-8 text-right card-text">
+                        <p id="restNumber-display">###</p>
+                        <p id="restAddress-display">address</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </span></h1>
+
+            <h1>Your Uber estimate is: <span id="uSelect">
+                <div class="card mt-4">
                   <div class="card-body row">
                     <div class="col-12">
                       <h5 class="card-title text-center" id="uberPrice-display">123$</h5>
                     </div>
                   </div>
                 </div>
-            </span></h1>
+              </span></h1>
 
-          <h1 class="text-center">Thank you for using DAM by Prestige Worldwide</h1>
+            <h1 class="text-center">Thank you for using DAM by Prestige Worldwide</h1>
+
+            <br>
+            <button type="button" class="btn btn-secondary btn-lg btn-prev">Previous</button>
+
+
           </div>
 
         </div>
@@ -148,10 +173,10 @@
     integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
+    </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+    </script>
 
   <script src="assets/js/app.js"></script>
 
