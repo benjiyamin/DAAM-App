@@ -48,6 +48,7 @@
           <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div id="homeTab">
               <form class="needs-validation" novalidate id="formStart">
+<<<<<<< HEAD
                 <div class="form-row">
                   <label for="zipCodeInput">Zip Code:</label>
                 </div>
@@ -78,6 +79,62 @@
                 <br>
                 <br>
                 <input class="btn btn-primary" id="searchButton" type="submit" value="Search">
+=======
+
+                <div class ="form-row">
+                  <label for="zipCodeInput">Zip Code:</label>
+                </div>
+                <div class = "form-row">
+                  <input class="form-control col-2" type="number" id="zipCodeInput" placeholder="Zip Code" required>
+                </div>
+                <div class = "invalid-feedback">
+                  Please type in the 5 digit zip code.
+                </div>
+
+                <div class = "form-row">
+                  <label for="dateInput">Date:</label>
+                </div>
+                <div class ="form-row">
+                  <input class="form-control col-2" type="date" id="dateInput" placeholder="Date" required>
+                </div>
+                <div class = "invalid-feedback">
+                    Please choose a date from the calendar using the arrow.
+                </div>
+
+                <div class = "form-row">
+                  <label for = "startTimeInput">Start Time:</label>
+                </div>
+                <div class = "form-row">
+                  <input class = "form-control col-2" type="time" id = "startTimeInput" placeholder="Start Time" required>
+                </div>
+                <div class = "invalid-feedback">
+                    Please type in the time using the formation HH:MM AM/PM.
+                </div>
+
+                <div class = "form-row">
+                  <label for = "endTimeInput">End Time:</label>
+                </div>
+                <div class = "form-row">
+                  <input class = "form-control col-2" type="time" id = "endTimeInput" placeholder="End Time" required>
+                </div>
+                <div class = "invalid-feedback">
+                    Please type in the time using the formation HH:MM AM/PM.
+                </div>
+ 
+                <div class = "form-row">
+                  <label for = "movieTitleInput">Movie Title:</label>
+                </div>
+                <div class ="form-row">
+                  <input class = "form-control col-2" type="text" id = "movieTitleInput" placeholder="Movie Search" required>
+                </div>
+                <div class = "invalid-feedback">
+                    Please type in the movie title.
+                </div>
+
+                <div class = "form-row">
+                  <input class="btn btn-primary" id="searchButton" type="submit" value="Search">
+                </div>
+>>>>>>> 9d0144e3c2d453fc995516ad3af8f0638cab16b7
               </form>
             </div>
 
