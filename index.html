@@ -47,10 +47,13 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div id="homeTab">
-              <form id="formStart">
-                <label class="form" for="zipCodeInput">Zip Code:</label>
-                <br>
-                <input type="number" id="zipCodeInput">
+              <form class="needs-validation" novalidate id="formStart">
+                <div class ="form-row">
+                  <label for="zipCodeInput">Zip Code:</label>
+                </div>
+                <div class = "form-row">
+                  <input class="form-control col-2" type="number" id="zipCodeInput" placeholder="Zip Code" value="32801" required>
+                </div>
                 <br>
                 <br>
                 <label class="form" for="dateInput">Date:</label>
@@ -77,7 +80,7 @@
               </form>
             </div>
           </div>
-          <div class="tab-pane fade show active pt-4" id="theaters" role="tabpanel" aria-labelledby="theaters-tab">
+          <div class="tab-pane fade pt-4" id="theaters" role="tabpanel" aria-labelledby="theaters-tab">
             <h1>Theaters showing <span id="movieTitle">Avengers: Endgame</span> in <span id="movieZipcode">32801</span>
             </h1>
 
