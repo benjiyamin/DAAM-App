@@ -28,12 +28,12 @@
       <div class="col">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
               aria-selected="true">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" id="movies-tab" data-toggle="tab" href="#movies" role="tab"
-              aria-controls="movies" aria-selected="false">Movies</a>
+            <a class="nav-link" id="movies-tab" data-toggle="tab" href="#movies" role="tab" aria-controls="movies"
+              aria-selected="false">Movies</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
@@ -45,8 +45,39 @@
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-          <div class="tab-pane fade show active pt-4" id="movies" role="tabpanel" aria-labelledby="movies-tab">
+          <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div id="homeTab">
+              <form id="formStart">
+                <label class="form" for="zipCodeInput">Zip Code:</label>
+                <br>
+                <input type="number" id="zipCodeInput">
+                <br>
+                <br>
+                <label class="form" for="dateInput">Date:</label>
+                <br>
+                <input type="date" id="dateInput">
+                <br>
+                <br>
+                <label class = "form" for = "startTimeInput">Start Time:</label>
+                <br>
+                <input type="time" id = "startTimeInput">
+                <br>
+                <br>
+                <label class = "form" for = "endTimeInput">End Time:</label>
+                <br>
+                <input type="time" id = "endTimeInput">
+                <br>
+                <br>
+                <label class="form" for = "movieTitleInput">Movie Title:</label>
+                <br>
+                <input type="text" id = "movieTitleInput">
+                <br>
+                <br>
+                <input class="btn btn-primary" id="searchButton" type="submit" value="Search">
+              </form>
+            </div>
+          </div>
+          <div class="tab-pane fade pt-4" id="movies" role="tabpanel" aria-labelledby="movies-tab">
             <h1>Theaters showing <span id="movieTitle">Avengers: Endgame</span> in <span id="movieZipcode">32801</span>
             </h1>
 
@@ -176,10 +207,10 @@
     integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
+    </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+    </script>
 
   <script src="assets/js/app.js"></script>
 
