@@ -28,6 +28,10 @@ function runtimeMinutes(runtime) {
   return hours * 60 + minutes
 }
 
+function searchMovieTitle(movieTitle) {
+  return movieTitle.replace('3D', '').trim()
+}
+
 function Application() {
   let self = this
   this.zipCode = undefined
@@ -53,7 +57,7 @@ function Application() {
       let cardImg = $('<img>')
         .addClass('card-img')
       //let queryUrl = "https://www.omdbapi.com/?t=" + movie.title + "&apikey=" + omdbApi;
-      let queryUrl = "https://www.omdbapi.com/?t=" + movie.title + "&y=" + movie.releaseYear + "&apikey=" + omdbApi;
+      let queryUrl = "https://www.omdbapi.com/?t=" + searchMovieTitle(movie.title) + "&y=" + movie.releaseYear + "&apikey=" + omdbApi;
       $.ajax({
         url: queryUrl,
         method: 'GET',
@@ -112,6 +116,8 @@ function Application() {
         .append(card)
       $movieResults.append(col)
     })
+    $('#moviesLoading').hide()
+    $movieResults.show()
   }
 
   this.loadMovies = function (zipCode, date, startTime, endTime) {
@@ -119,6 +125,8 @@ function Application() {
     this.date = date
     this.startTime = startTime
     this.endTime = endTime
+    $('#moviesLoading').show()
+    $('#movieResults').hide()
     let queryUrl = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=' + date + '&zip=' + zipCode + '&api_key=' + tmsApi
     $.ajax({
       url: queryUrl,
@@ -189,6 +197,16 @@ function Application() {
         $showtimeResults.append(card)
       }
     }
+    $('#showtimesLoading').hide()
+    $showtimeResults.show()
+  }
+
+  this.loadShowtimes = function() {
+    $('#showtimesLoading').show()
+    $('#showtimeResults').hide()
+    self.theaters = _.groupBy(self.movie.showtimes, function (showtime) {
+      return showtime.theatre.name
+    })
   }
 
   this.renderRestaurants = function () {
@@ -235,9 +253,13 @@ function Application() {
         })
       $restaurantResults.append(card)
     })
+    $('#restaurantsLoading').hide()
+    $restaurantResults.show()
   }
 
   this.loadRestaurants = function (location) {
+    $('#restaurantsLoading').show()
+    $('#restaurantResults').hide()
     let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant&sort_by=distance&limit=3&location=" + location;
     $.ajax({
       url: queryUrl,
@@ -269,9 +291,7 @@ function Application() {
   })
 
   $('#movieNext, #showtimes-tab').on('click', function () {
-    self.theaters = _.groupBy(self.movie.showtimes, function (showtime) {
-      return showtime.theatre.name
-    })
+    self.loadShowtimes()
     $('#movieTitle').text(self.movie.title)
     $('#theaterZipcode').text(self.zipCode)
     self.renderShowtimes()
