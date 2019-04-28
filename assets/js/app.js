@@ -296,7 +296,6 @@ function Application() {
     let date = $('#dateInput').val().trim()
     let startTime = $('#startTimeInput').val().trim()
     let endTime = $('#endTimeInput').val().trim()
-    //let $movieZipcode = $('#movieZipcode')
     if (zipCode !== self.zipCode || date !== self.date || startTime !== self.startTime || endTime !== self.endTime) {
       self.loadMovies(zipCode, date, startTime, endTime)
       $('#movieZipcode').text(self.zipCode)
@@ -306,7 +305,7 @@ function Application() {
   $('#movieNext, #showtimes-tab').on('click', function () {
     let $movieTitle = $('#movieTitle')
     let $theaterZipcode = $('#theaterZipcode')
-    if ($movieTitle.text() !== self.movie.title || $theaterZipcode !== self.zipCode) {
+    if ($movieTitle.text() !== self.movie.title || $theaterZipcode.text() !== self.zipCode) {
       self.loadShowtimes()
       $movieTitle.text(self.movie.title)
       $theaterZipcode.text(self.zipCode)
