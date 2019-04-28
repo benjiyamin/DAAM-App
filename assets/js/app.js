@@ -275,6 +275,11 @@ function Application() {
     })
   }
 
+  this.renderTodaysDate = function() {
+    let today = new Date();
+    $('#dateInput').val(moment(today).format('YYYY-MM-DD'))
+  }
+
   $('.btn-prev').on('click', function () {
     let tabId = $(this)
       .closest('div.tab-pane')
