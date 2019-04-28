@@ -253,7 +253,7 @@ function Application() {
     $('#myTab a[href="#' + tabId + '"]').tab('show')
   })
 
-  $('#movieNext').on('click', function () {
+  $('#movieNext, #showtimes-tab').on('click', function () {
     self.theaters = _.groupBy(self.movie.showtimes, function (showtime) {
       return showtime.theatre.name
     })
@@ -262,7 +262,7 @@ function Application() {
     self.renderShowtimes()
   })
 
-  $('#showtimeNext').on('click', function () {
+  $('#showtimeNext, #restaurants-tab').on('click', function () {
     self.loadRestaurants(self.showtime.theatre.name)
     $('#theaterName').text(self.showtime.theatre.name)
   })
