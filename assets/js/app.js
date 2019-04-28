@@ -14,11 +14,9 @@ function starsHtml(rating, maxRating = 5) {
 }
 
 function categoryString(categories) {
-  let string = ''
-  categories.forEach(category => {
-    string += ', ' + category.title
-  });
-  return string
+  return categories.map(function (category) {
+    return category.title
+  }).join(', ')
 }
 
 function runtimeMinutes(runtime) {
@@ -30,6 +28,16 @@ function runtimeMinutes(runtime) {
 
 function searchMovieTitle(movieTitle) {
   return movieTitle.replace('3D', '').trim()
+}
+
+function formattedPhone(phoneString) {
+  var cleaned = ('' + phoneString).replace(/\D/g, '')
+  var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
+  if (match) {
+    var intlCode = (match[1] ? '+1 ' : '')
+    return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
+  }
+  return null
 }
 
 function Application() {
@@ -219,24 +227,28 @@ function Application() {
         .addClass('card-title')
         .text(restaurant.name)
       let rating = $('<p>')
-        .addClass('card-text')
         .html(starsHtml(restaurant.rating))
-      let price = $('<p>')
-        .addClass('card-text')
-        .text(restaurant.price + ' | ' + categoryString(restaurant.categories))
+      let info = $('<p>')
+        .text(categoryString(restaurant.categories))
+      if (restaurant.price) {
+        info.prepend(restaurant.price + ' | ')
+      }
       let main = $('<div>')
-        .addClass('col-4')
-        .append(name, rating, price)
+        .addClass('col')
+        .append(rating, info)
       let phone = $('<p>')
-        .text(restaurant.phone)
+        .text(formattedPhone(restaurant.phone))
       let address = $('<p>')
         .text(restaurant.location.address1)
       let contact = $('<div>')
-        .addClass('col-8 text-right card-text')
+        .addClass('col text-right')
         .append(phone, address)
-      let cardBody = $('<div>')
-        .addClass('card-body row')
+      let row = $('<div>')
+        .addClass('row card-text')
         .append(main, contact)
+      let cardBody = $('<div>')
+        .addClass('card-body')
+        .append(name, row)
       let card = $('<div>')
         .addClass('card mt-4 restaurant-card')
         .append(cardBody)
