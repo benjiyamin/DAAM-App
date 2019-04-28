@@ -52,7 +52,8 @@ function Application() {
     this.movies.forEach(movie => {
       let cardImg = $('<img>')
         .addClass('card-img')
-      let queryUrl = "https://www.omdbapi.com/?t=" + movie.title + "&apikey=" + omdbApi;
+      //let queryUrl = "https://www.omdbapi.com/?t=" + movie.title + "&apikey=" + omdbApi;
+      let queryUrl = "https://www.omdbapi.com/?t=" + movie.title + "&y=" + movie.releaseYear + "&apikey=" + omdbApi;
       $.ajax({
         url: queryUrl,
         method: 'GET',
