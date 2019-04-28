@@ -32,12 +32,12 @@
               aria-selected="true">Home</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link disabled" id="movies-tab" data-toggle="tab" href="#movies" role="tab" aria-controls="movies"
-                aria-selected="false">Movies</a>
-            </li>
+            <a class="nav-link disabled" id="movies-tab" data-toggle="tab" href="#movies" role="tab"
+              aria-controls="movies" aria-selected="false">Movies</a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link disabled" id="showtimes-tab" data-toggle="tab" href="#showtimes" role="tab" aria-controls="showtimes"
-              aria-selected="false">Showtimes</a>
+            <a class="nav-link disabled" id="showtimes-tab" data-toggle="tab" href="#showtimes" role="tab"
+              aria-controls="showtimes" aria-selected="false">Showtimes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
@@ -111,7 +111,7 @@
             </div>
           </div>
           <div class="tab-pane fade pt-4" id="movies" role="tabpanel" aria-labelledby="theaters-tab">
-            <h1>Movies showing in <span id="movieZipcode">32801</span>
+            <h1>Movies showing in <span class="font-italic font-weight-bold" id="movieZipcode">32801</span>
             </h1>
             <div class="text-center" id="moviesLoading">
               <div class="spinner-border" role="status">
@@ -121,7 +121,8 @@
             <div class="row" id="movieResults"></div>
           </div>
           <div class="tab-pane fade pt-4" id="showtimes" role="tabpanel" aria-labelledby="showtimes-tab">
-            <h1>Showtimes for <span id="movieTitle"></span> in <span id="theaterZipcode"></span>
+            <h1>Showtimes for <span class="font-italic font-weight-bold" id="movieTitle"></span> in <span
+                class="font-italic font-weight-bold" id="theaterZipcode"></span>
             </h1>
             <div class="text-center" id="showtimesLoading">
               <div class="spinner-border" role="status">
@@ -131,7 +132,7 @@
             <div id="showtimeResults"></div>
           </div>
           <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
-            <h1>Restaurants near <span id="theaterName"></span></h1>
+            <h1>Restaurants near <span class="font-italic font-weight-bold" id="theaterName"></span></h1>
             <div class="text-center" id="restaurantsLoading">
               <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
@@ -162,7 +163,7 @@
 
   <!-- Link to Underscore.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-  
+
   <script src="assets/js/app.js"></script>
 
   <script>
