@@ -276,11 +276,6 @@ function Application() {
     })
   }
 
-  this.renderTodaysDate = function () {
-    let today = new Date();
-    $('#dateInput').val(moment(today).format('YYYY-MM-DD'))
-  }
-
   this.renderCurrentLocation = function () {
     if ("geolocation" in navigator) {
       // check if geolocation is supported/enabled on current browser
@@ -309,6 +304,16 @@ function Application() {
       // get your location some other way
       console.log('geolocation is not enabled on this browser')
     }
+  }
+
+  this.renderCurrentDate = function () {
+    $('#dateInput').val(moment().format('YYYY-MM-DD'))
+  }
+
+
+  this.renderCurrentTime = function () {
+    $('#startTimeInput').val(moment().format('HH:mm'))
+    $('#endTimeInput').val(moment().endOf('day').format('HH:mm'))
   }
 
   $('.btn-prev').on('click', function () {
