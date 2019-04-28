@@ -105,8 +105,9 @@ function Application() {
     })
   }
 
-  this.loadMovies = function (zipcode) {
-    let queryUrl = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2019-04-27&zip=' + zipcode + '&api_key=' + tmsApi
+  this.loadMovies = function (zipCode) {
+    this.zipCode = zipCode
+    let queryUrl = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2019-04-27&zip=' + zipCode + '&api_key=' + tmsApi
     $.ajax({
       url: queryUrl,
       method: 'GET',
@@ -140,7 +141,7 @@ function Application() {
           let button = $('<button>')
             //.attr('href', showtime.ticketURI)
             //.attr('data-toggle', 'button')
-            .addClass('btn btn-lg btn-info btn-showtime')
+            .addClass('btn btn-info btn-showtime ml-1')
             .text(time)
             .click(function () {
               let nextTabId = $(this)
