@@ -49,6 +49,7 @@ function Application() {
   let tmsApi = 'kq8d5zhpr87bvbz6cufpdgqt'
   let gmapsApi = 'AIzaSyDWFMiZeZwNNAdJUZsfMZ7edVnxgLOSfDs'
   let omdbApi = 'bd02b758'
+  let geoUser = 'mohican'
 
   this.renderMovies = function () {
     let $movieResults = $('#movieResults')
@@ -275,9 +276,39 @@ function Application() {
     })
   }
 
-  this.renderTodaysDate = function() {
+  this.renderTodaysDate = function () {
     let today = new Date();
     $('#dateInput').val(moment(today).format('YYYY-MM-DD'))
+  }
+
+  this.renderCurrentLocation = function () {
+    if ("geolocation" in navigator) {
+      // check if geolocation is supported/enabled on current browser
+      navigator.geolocation.getCurrentPosition(
+        function success(position) {
+          // for when getting location is a success
+          let lat = position.coords.latitude
+          let lng = position.coords.longitude
+          let queryUrl = 'http://api.geonames.org/findNearbyPostalCodesJSON?maxRows=1&lat=' + lat + '&lng=' + lng + '&username=' + geoUser
+          $.ajax({
+            url: queryUrl,
+            method: 'GET',
+            dataType: 'json',
+          }).done(function (data) {
+            let zipCode = data.postalCodes[0].postalCode
+            $('#zipCodeInput').val(zipCode)
+          })
+        },
+        function error(error_message) {
+          // for when getting location results in an error
+          console.error('An error has occured while retrieving location ', error_message)
+        }
+      )
+    } else {
+      // geolocation is not supported
+      // get your location some other way
+      console.log('geolocation is not enabled on this browser')
+    }
   }
 
   $('.btn-prev').on('click', function () {
