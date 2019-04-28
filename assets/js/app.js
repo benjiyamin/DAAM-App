@@ -201,12 +201,13 @@ function Application() {
     $showtimeResults.show()
   }
 
-  this.loadShowtimes = function() {
+  this.loadShowtimes = function () {
     $('#showtimesLoading').show()
     $('#showtimeResults').hide()
     self.theaters = _.groupBy(self.movie.showtimes, function (showtime) {
       return showtime.theatre.name
     })
+    this.renderShowtimes()
   }
 
   this.renderRestaurants = function () {
@@ -290,16 +291,58 @@ function Application() {
     $('#myTab a[href="#' + tabId + '"]').tab('show')
   })
 
+  $('#homeNext, #movies-tab').on('click', function () {
+    let zipCode = $('#zipCodeInput').val().trim()
+    let date = $('#dateInput').val().trim()
+    let startTime = $('#startTimeInput').val().trim()
+    let endTime = $('#endTimeInput').val().trim()
+    //let $movieZipcode = $('#movieZipcode')
+    if (zipCode !== self.zipCode || date !== self.date || startTime !== self.startTime || endTime !== self.endTime) {
+      self.loadMovies(zipCode, date, startTime, endTime)
+      $('#movieZipcode').text(self.zipCode)
+    }
+  })
+
   $('#movieNext, #showtimes-tab').on('click', function () {
-    self.loadShowtimes()
-    $('#movieTitle').text(self.movie.title)
-    $('#theaterZipcode').text(self.zipCode)
-    self.renderShowtimes()
+    let $movieTitle = $('#movieTitle')
+    let $theaterZipcode = $('#theaterZipcode')
+    if ($movieTitle.text() !== self.movie.title || $theaterZipcode !== self.zipCode) {
+      self.loadShowtimes()
+      $movieTitle.text(self.movie.title)
+      $theaterZipcode.text(self.zipCode)
+    }
   })
 
   $('#showtimeNext, #restaurants-tab').on('click', function () {
-    self.loadRestaurants(self.showtime.theatre.name)
-    $('#theaterName').text(self.showtime.theatre.name)
+    let $theaterName = $('#theaterName')
+    if ($theaterName.text() !== self.showtime.theatre.name) {
+      self.loadRestaurants(self.showtime.theatre.name)
+      $theaterName.text(self.showtime.theatre.name)
+    }
+  })
+
+  $('#restaurantNext, #summary-tab').on('click', function () {
+
+  })
+
+  $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
+    let zipCode = $('#zipCodeInput').val().trim()
+    let date = $('#dateInput').val().trim()
+    let startTime = $('#startTimeInput').val().trim()
+    let endTime = $('#endTimeInput').val().trim()
+    let nextTabId = $(this)
+      .closest('div.tab-pane')
+      .next()
+      .attr('id')
+    let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
+    //let $homeNext = $('#homeNext')
+    if (zipCode && date && startTime && endTime) {
+      //$homeNext.prop('disabled', false)
+      $nextTab.removeClass('disabled')
+    } else {
+      //$homeNext.prop('disabled', true)
+      $nextTab.addClass('disabled')
+    }
   })
 
 }

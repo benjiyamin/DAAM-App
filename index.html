@@ -32,7 +32,7 @@
               aria-selected="true">Home</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" id="movies-tab" data-toggle="tab" href="#movies" role="tab" aria-controls="movies"
+              <a class="nav-link disabled" id="movies-tab" data-toggle="tab" href="#movies" role="tab" aria-controls="movies"
                 aria-selected="false">Movies</a>
             </li>
           <li class="nav-item">
@@ -168,7 +168,6 @@
   <script>
     $(document).ready(function () {
       var app = new Application()
-      app.loadMovies(32801, '2019-04-28', '16:00', '21:00')
     })
   </script>
 </body>
