@@ -32,11 +32,15 @@
               aria-selected="true">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="theaters-tab" data-toggle="tab" href="#theaters" role="tab" aria-controls="movies"
+              <a class="nav-link" id="movies-tab" data-toggle="tab" href="#movies" role="tab" aria-controls="movies"
+                aria-selected="false">Movies</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" id="theaters-tab" data-toggle="tab" href="#theaters" role="tab" aria-controls="movies"
               aria-selected="false">Theaters</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
+            <a class="nav-link disabled" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
               aria-controls="restaurants" aria-selected="false">Restaurants</a>
           </li>
           <li class="nav-item">
@@ -48,18 +52,14 @@
           <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div id="homeTab">
               <form class="needs-validation" novalidate id="formStart">
-<<<<<<< HEAD
-                <div class="form-row">
-=======
 
-                <div class ="form-row">
->>>>>>> 9d0144e3c2d453fc995516ad3af8f0638cab16b7
+                <div class="form-row">
                   <label for="zipCodeInput">Zip Code:</label>
                 </div>
                 <div class="form-row">
                   <input class="form-control col-2" type="number" id="zipCodeInput" placeholder="Zip Code" required>
                 </div>
-                <div class = "invalid-feedback">
+                <div class="invalid-feedback">
                   Please type in the 5 digit zip code.
                 </div>
 
@@ -69,8 +69,8 @@
                 <div class="form-row">
                   <input class="form-control col-2" type="date" id="dateInput" placeholder="Date" required>
                 </div>
-                <div class = "invalid-feedback">
-                    Please choose a date from the calendar using the arrow.
+                <div class="invalid-feedback">
+                  Please choose a date from the calendar using the arrow.
                 </div>
 
                 <div class="form-row">
@@ -79,8 +79,8 @@
                 <div class="form-row">
                   <input class="form-control col-2" type="time" id="startTimeInput" placeholder="Start Time" required>
                 </div>
-                <div class = "invalid-feedback">
-                    Please type in the time using the formation HH:MM AM/PM.
+                <div class="invalid-feedback">
+                  Please type in the time using the formation HH:MM AM/PM.
                 </div>
 
                 <div class="form-row">
@@ -89,19 +89,19 @@
                 <div class="form-row">
                   <input class="form-control col-2" type="time" id="endTimeInput" placeholder="End Time" required>
                 </div>
-                <div class = "invalid-feedback">
-                    Please type in the time using the formation HH:MM AM/PM.
+                <div class="invalid-feedback">
+                  Please type in the time using the formation HH:MM AM/PM.
                 </div>
- 
-                <div class = "form-row">
-                  <label for = "movieTitleInput">Movie Title:</label>
+
+                <div class="form-row">
+                  <label for="movieTitleInput">Movie Title:</label>
                 </div>
                 <div class="form-row">
                   <input class="form-control col-2" type="text" id="movieTitleInput" placeholder="Movie Search"
                     required>
                 </div>
-                <div class = "invalid-feedback">
-                    Please type in the movie title.
+                <div class="invalid-feedback">
+                  Please type in the movie title.
                 </div>
 
                 <div class="form-row">
@@ -110,15 +110,31 @@
               </form>
             </div>
           </div>
+          <div class="tab-pane fade pt-4" id="movies" role="tabpanel" aria-labelledby="theaters-tab">
+            <h1>Movies showing in <span id="movieZipcode">32801</span>
+            </h1>
+            <div class="row" id="movieResults"></div>
+            <div class="row float-right mt-2">
+              <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+              <button type="button" class="btn btn-next btn-primary" id="movieNext" disabled>Next</button>
+            </div>
+          </div>
           <div class="tab-pane fade pt-4" id="theaters" role="tabpanel" aria-labelledby="theaters-tab">
-            <h1>Theaters showing <span id="movieTitle">Avengers: Endgame</span> in <span id="movieZipcode">32801</span>
+            <h1>Showtimes for <span id="movieTitle"></span> in <span id="theaterZipcode"></span>
             </h1>
             <div id="theaterResults"></div>
-
+            <div class="row float-right mt-2">
+              <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+              <button type="button" class="btn btn-next btn-primary" id="theaterNext" disabled>Next</button>
+            </div>
           </div>
           <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
-            <h1>Restaurants close to <span id="theaterName">Molly's Movies</span></h1>
+            <h1>Restaurants near <span id="theaterName"></span></h1>
             <div id="restaurantResults"></div>
+            <div class="row float-right mt-2">
+              <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+              <button type="button" class="btn btn-next btn-primary" id="restaurantNext" disabled>Next</button>
+            </div>
           </div>
           <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">...</div>
 
@@ -138,14 +154,18 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
 
+  <!-- Link to Moment.js -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+  <!-- Link to Underscore.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+  
   <script src="assets/js/app.js"></script>
 
   <script>
     $(document).ready(function () {
       var app = new Application()
-      //app.renderTheaters()
-      app.loadRestaurants('777 N Orange Ave')
-      //app.renderRestaurants()
+      app.loadMovies(32801)
     })
   </script>
 </body>
