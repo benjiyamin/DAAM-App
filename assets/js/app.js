@@ -51,7 +51,6 @@ function Application() {
         method: 'GET',
         dataType: 'json',
       }).done(function (data) {
-        console.log(data.Poster)
         if (/(jpg|gif|png|JPG|GIF|PNG|JPEG|jpeg)$/.test(data.Poster)){ // image url as input
           cardImg.attr('src', data.Poster)
         } else {
@@ -115,13 +114,12 @@ function Application() {
     }).done(function (data) {
       self.movies = data
       self.renderMovies()
-      console.log(data)
     })
   }
 
-  this.renderTheaters = function () {
-    let $theaterResults = $('#theaterResults')
-    $theaterResults.empty()
+  this.renderShowtimes = function () {
+    let $showtimeResults = $('#showtimeResults')
+    $showtimeResults.empty()
 
     for (const theaterName in this.theaters) {
       if (this.theaters.hasOwnProperty(theaterName)) {
@@ -150,15 +148,15 @@ function Application() {
                 .next()
                 .attr('id')
               let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
-              let $theaterNext = $('#theaterNext')
+              let $showtimeNext = $('#showtimeNext')
               if ($(this).hasClass('active')) {
                 // None selected
-                $theaterNext.prop('disabled', true)
+                $showtimeNext.prop('disabled', true)
                 $nextTab.addClass('disabled')
               } else {
                 // Button selected
                 $('.btn-showtime').removeClass('active')
-                $theaterNext.prop('disabled', false)
+                $showtimeNext.prop('disabled', false)
                 $nextTab.removeClass('disabled')
                 self.showtime = showtime
               }
@@ -172,7 +170,7 @@ function Application() {
         let card = $('<div>')
           .addClass('card mt-4 theater-card')
           .append(cardBody)
-        $theaterResults.append(card)
+        $showtimeResults.append(card)
       }
     }
   }
@@ -181,7 +179,6 @@ function Application() {
     let $restaurantResults = $('#restaurantResults')
     $restaurantResults.empty()
     this.restaurants.forEach(restaurant => {
-      //console.log(restaurant)
       let name = $('<h5>')
         .addClass('card-title')
         .text(restaurant.name)
@@ -236,7 +233,6 @@ function Application() {
     }).done(function (data) {
       self.restaurants = data.businesses
       self.renderRestaurants()
-      console.log(data)
     })
   }
 
@@ -262,11 +258,10 @@ function Application() {
     })
     $('#movieTitle').text(self.movie.title)
     $('#theaterZipcode').text(self.zipCode)
-    self.renderTheaters()
+    self.renderShowtimes()
   })
 
-  $('#theaterNext').on('click', function () {
-    //console.log(self.showtime)
+  $('#showtimeNext').on('click', function () {
     self.loadRestaurants(self.showtime.theatre.name)
     $('#theaterName').text(self.showtime.theatre.name)
   })

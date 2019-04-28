@@ -36,8 +36,8 @@
                 aria-selected="false">Movies</a>
             </li>
           <li class="nav-item">
-            <a class="nav-link disabled" id="theaters-tab" data-toggle="tab" href="#theaters" role="tab" aria-controls="movies"
-              aria-selected="false">Theaters</a>
+            <a class="nav-link disabled" id="showtimes-tab" data-toggle="tab" href="#showtimes" role="tab" aria-controls="showtimes"
+              aria-selected="false">Showtimes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
@@ -119,13 +119,13 @@
               <button type="button" class="btn btn-next btn-primary" id="movieNext" disabled>Next</button>
             </div>
           </div>
-          <div class="tab-pane fade pt-4" id="theaters" role="tabpanel" aria-labelledby="theaters-tab">
+          <div class="tab-pane fade pt-4" id="showtimes" role="tabpanel" aria-labelledby="showtimes-tab">
             <h1>Showtimes for <span id="movieTitle"></span> in <span id="theaterZipcode"></span>
             </h1>
-            <div id="theaterResults"></div>
+            <div id="showtimeResults"></div>
             <div class="row float-right mt-2">
               <button type="button" class="btn btn-prev btn-secondary">Prev</button>
-              <button type="button" class="btn btn-next btn-primary" id="theaterNext" disabled>Next</button>
+              <button type="button" class="btn btn-next btn-primary" id="showtimeNext" disabled>Next</button>
             </div>
           </div>
           <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
