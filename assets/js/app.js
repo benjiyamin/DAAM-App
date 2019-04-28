@@ -21,6 +21,13 @@ function categoryString(categories) {
   return string
 }
 
+function runtimeMinutes(runtime) {
+  runtimeArray = runtime.split(/[PTHM]+/)
+  var hours = parseInt(runtimeArray[1])
+  var minutes = parseInt(runtimeArray[2])
+  return hours * 60 + minutes
+}
+
 function Application() {
   let self = this
   this.zipCode = undefined
@@ -51,7 +58,7 @@ function Application() {
         method: 'GET',
         dataType: 'json',
       }).done(function (data) {
-        if (/(jpg|gif|png|JPG|GIF|PNG|JPEG|jpeg)$/.test(data.Poster)){ // image url as input
+        if (/(jpg|gif|png|JPG|GIF|PNG|JPEG|jpeg)$/.test(data.Poster)) { // image url as input
           cardImg.attr('src', data.Poster)
         } else {
           cardImg.attr('src', 'https://via.placeholder.com/200x300')
@@ -65,7 +72,8 @@ function Application() {
         .text(movie.title + ' (' + movie.releaseYear + ')')
       let rating = $('<p>')
         .addClass('card-text')
-        .text(movie.runTime)
+        //.text(movie.runTime)
+        .text(runtimeMinutes(movie.runTime) + ' min')
       let cardBody = $('<div>')
         .addClass('card-body')
         .append(name, rating)
@@ -105,9 +113,12 @@ function Application() {
     })
   }
 
-  this.loadMovies = function (zipCode) {
+  this.loadMovies = function (zipCode, date, startTime, endTime) {
     this.zipCode = zipCode
-    let queryUrl = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2019-04-27&zip=' + zipCode + '&api_key=' + tmsApi
+    this.date = date
+    this.startTime = startTime
+    this.endTime = endTime
+    let queryUrl = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=' + date + '&zip=' + zipCode + '&api_key=' + tmsApi
     $.ajax({
       url: queryUrl,
       method: 'GET',
@@ -119,6 +130,7 @@ function Application() {
   }
 
   this.renderShowtimes = function () {
+
     let $showtimeResults = $('#showtimeResults')
     $showtimeResults.empty()
 
@@ -137,33 +149,35 @@ function Application() {
         let times = $('<div>')
           .addClass('col-8 text-right')
         showtimes.forEach(showtime => {
-          let time = moment(showtime.dateTime).format('h:mm a')
-          let button = $('<button>')
-            //.attr('href', showtime.ticketURI)
-            //.attr('data-toggle', 'button')
-            .addClass('btn btn-info btn-showtime ml-1')
-            .text(time)
-            .click(function () {
-              let nextTabId = $(this)
-                .closest('div.tab-pane')
-                .next()
-                .attr('id')
-              let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
-              let $showtimeNext = $('#showtimeNext')
-              if ($(this).hasClass('active')) {
-                // None selected
-                $showtimeNext.prop('disabled', true)
-                $nextTab.addClass('disabled')
-              } else {
-                // Button selected
-                $('.btn-showtime').removeClass('active')
-                $showtimeNext.prop('disabled', false)
-                $nextTab.removeClass('disabled')
-                self.showtime = showtime
-              }
-              $(this).toggleClass('active')
-            })
-          times.append(button)
+          let time = moment(showtime.dateTime)
+          let startTime = moment(self.date + 'T' + self.startTime)
+          let endTime = moment(self.date + 'T' + self.endTime)
+          if (time.isBetween(startTime, endTime)) {
+            let button = $('<button>')
+              .addClass('btn btn-info btn-showtime ml-1 mb-1')
+              .text(time.format('h:mm a'))
+              .click(function () {
+                let nextTabId = $(this)
+                  .closest('div.tab-pane')
+                  .next()
+                  .attr('id')
+                let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
+                let $showtimeNext = $('#showtimeNext')
+                if ($(this).hasClass('active')) {
+                  // None selected
+                  $showtimeNext.prop('disabled', true)
+                  $nextTab.addClass('disabled')
+                } else {
+                  // Button selected
+                  $('.btn-showtime').removeClass('active')
+                  $showtimeNext.prop('disabled', false)
+                  $nextTab.removeClass('disabled')
+                  self.showtime = showtime
+                }
+                $(this).toggleClass('active')
+              })
+            times.append(button)
+          }
         });
         let cardBody = $('<div>')
           .addClass('card-body row')
