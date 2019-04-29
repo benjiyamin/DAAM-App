@@ -75,7 +75,7 @@ function Application(storage) {
         if (/(jpg|gif|png|JPG|GIF|PNG|JPEG|jpeg)$/.test(data.Poster)) { // image url as input
           cardImg.attr('src', data.Poster)
         } else {
-          cardImg.attr('src', 'https://via.placeholder.com/200x300')
+          cardImg.attr('src', 'assets/images/default-movie.png')
         }
       })
       let poster = $('<div>')
