@@ -164,11 +164,13 @@
   <!-- Link to Underscore.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
 
+  <script src="assets/js/storage.js"></script>
   <script src="assets/js/app.js"></script>
 
   <script>
     $(document).ready(function () {
-      var app = new Application()
+      var storage = new Storage()
+      var app = new Application(storage)
       app.renderCurrentLocation()
       app.renderCurrentDate()
       app.renderCurrentTime()

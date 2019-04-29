@@ -40,7 +40,7 @@ function formattedPhone(phoneString) {
   return null
 }
 
-function Application() {
+function Application(storage) {
   let self = this
   this.zipCode = undefined
   this.date = undefined
@@ -137,14 +137,25 @@ function Application() {
     $('#moviesLoading').show()
     $('#movieResults').hide()
     let queryUrl = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=' + date + '&zip=' + zipCode + '&api_key=' + tmsApi
-    $.ajax({
-      url: queryUrl,
-      method: 'GET',
-      dataType: 'json',
-    }).done(function (data) {
-      self.movies = data
+    storage.pull()
+    let storedData = storage.retrieve(queryUrl)
+    if (storedData) {
+      console.log('Local data loaded')
+      self.movies = storedData
       self.renderMovies()
-    })
+    } else {
+      $.ajax({
+        url: queryUrl,
+        method: 'GET',
+        dataType: 'json',
+      }).done(function (data) {
+        console.log('Requested data loaded')
+        self.movies = data
+        self.renderMovies()
+        storage.add(request = queryUrl, response = data)
+        storage.push()
+      })
+    }
   }
 
   this.renderShowtimes = function () {
