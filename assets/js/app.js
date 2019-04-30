@@ -57,6 +57,26 @@ function Application(storage) {
   let omdbApi = 'bd02b758'
   let geoUser = 'mohican'
 
+  this.checkInputs = function () {
+    let zipCode = $('#zipCodeInput').val().trim()
+    let date = $('#dateInput').val().trim()
+    let startTime = $('#startTimeInput').val().trim()
+    let endTime = $('#endTimeInput').val().trim()
+    //let nextTabId = $(this)
+    //  .closest('div.tab-pane')
+    //  .next()
+    //  .attr('id')
+    //let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
+    let $homeNext = $('#homeNext')
+    if (zipCode && date && startTime && endTime) {
+      //$nextTab.removeClass('disabled')
+      $homeNext.prop('disabled', false)
+    } else {
+      //$nextTab.addClass('disabled')
+      $homeNext.prop('disabled', true)
+    }
+  }
+
   this.renderMovies = function () {
     let $movieResults = $('#movieResults')
     $movieResults.empty()
@@ -97,21 +117,21 @@ function Application(storage) {
         .addClass('card h-100 movie-card')
         .append(row)
         .click(function () {
-          let nextTabId = $(this)
-            .closest('div.tab-pane')
-            .next()
-            .attr('id')
-          let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
+          //let nextTabId = $(this)
+          //  .closest('div.tab-pane')
+          //  .next()
+          //  .attr('id')
+          //let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
           let $movieNext = $('#movieNext')
           if ($(this).hasClass('selected')) {
             // None selected
             $movieNext.prop('disabled', true)
-            $nextTab.addClass('disabled')
+            //$nextTab.addClass('disabled')
           } else {
             // Card selected
             $('.movie-card').removeClass('selected')
             $movieNext.prop('disabled', false)
-            $nextTab.removeClass('disabled')
+            //$nextTab.removeClass('disabled')
             self.movie = movie
           }
           $(this).toggleClass('selected')
@@ -182,21 +202,21 @@ function Application(storage) {
               .addClass('btn btn-info btn-showtime ml-1 mb-1')
               .text(time.format('h:mm a'))
               .click(function () {
-                let nextTabId = $(this)
-                  .closest('div.tab-pane')
-                  .next()
-                  .attr('id')
-                let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
+                //let nextTabId = $(this)
+                //  .closest('div.tab-pane')
+                //  .next()
+                //  .attr('id')
+                //let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
                 let $showtimeNext = $('#showtimeNext')
                 if ($(this).hasClass('active')) {
                   // None selected
                   $showtimeNext.prop('disabled', true)
-                  $nextTab.addClass('disabled')
+                  //$nextTab.addClass('disabled')
                 } else {
                   // Button selected
                   $('.btn-showtime').removeClass('active')
                   $showtimeNext.prop('disabled', false)
-                  $nextTab.removeClass('disabled')
+                  //$nextTab.removeClass('disabled')
                   self.showtime = showtime
                 }
                 $(this).toggleClass('active')
@@ -311,6 +331,7 @@ function Application(storage) {
           }).done(function (data) {
             let zipCode = data.postalCodes[0].postalCode
             $('#zipCodeInput').val(zipCode)
+            self.checkInputs()
           })
         },
         function error(error_message) {
@@ -340,7 +361,10 @@ function Application(storage) {
       .closest('div.tab-pane')
       .prev()
       .attr('id')
-    $('#myTab a[href="#' + tabId + '"]').tab('show')
+    let $prevTab = $('#myTab a[href="#' + tabId + '"]')
+    $prevTab.removeClass('disabled')
+    $prevTab.tab('show')
+    $prevTab.addClass('disabled')
   })
 
   $('.btn-next').on('click', function () {
@@ -348,7 +372,10 @@ function Application(storage) {
       .closest('div.tab-pane')
       .next()
       .attr('id')
-    $('#myTab a[href="#' + tabId + '"]').tab('show')
+    let $nextTab = $('#myTab a[href="#' + tabId + '"]')
+    $nextTab.removeClass('disabled')
+    $nextTab.tab('show')
+    $nextTab.addClass('disabled')
   })
 
   $('#homeNext, #movies-tab').on('click', function () {
@@ -391,20 +418,7 @@ function Application(storage) {
   })
 
   $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
-    let zipCode = $('#zipCodeInput').val().trim()
-    let date = $('#dateInput').val().trim()
-    let startTime = $('#startTimeInput').val().trim()
-    let endTime = $('#endTimeInput').val().trim()
-    let nextTabId = $(this)
-      .closest('div.tab-pane')
-      .next()
-      .attr('id')
-    let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
-    if (zipCode && date && startTime && endTime) {
-      $nextTab.removeClass('disabled')
-    } else {
-      $nextTab.addClass('disabled')
-    }
+    self.checkInputs()
   })
 
 }
