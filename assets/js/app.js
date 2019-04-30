@@ -152,7 +152,7 @@ function Application(storage) {
     this.endTime = endTime
     $('#moviesLoading').show()
     $('#movieResults').hide()
-    let queryUrl = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=' + date + '&zip=' + zipCode + '&api_key=' + tmsApi
+    let queryUrl = 'https://data.tmsapi.com/v1.1/movies/showings?startDate=' + date + '&zip=' + zipCode + '&api_key=' + tmsApi
     storage.pull()
     let storedData = storage.retrieve(queryUrl)
     if (storedData) {
