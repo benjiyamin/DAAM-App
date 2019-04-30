@@ -28,7 +28,7 @@
       <div class="col">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            <a class="nav-link disabled active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
               aria-selected="true">Home</a>
           </li>
           <li class="nav-item">
@@ -44,7 +44,7 @@
               aria-controls="restaurants" aria-selected="false">Restaurants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary"
+            <a class="nav-link disabled" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary"
               aria-selected="false">Summary</a>
           </li>
         </ul>
@@ -109,9 +109,19 @@
                 </div>
               </form>
             </div>
+            <div class="fixed-bottom">
+              <div class="container">
+                <div class="navbar navbar-light bg-light justify-content-between">
+                  <div class="navbar-brand"></div>
+                  <div class="form-inline">
+                    <button type="button" class="btn btn-next btn-primary ml-2" id="homeNext" disabled>Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane fade pt-4" id="movies" role="tabpanel" aria-labelledby="theaters-tab">
-            <h1>Movies showing in <span class="font-italic font-weight-bold" id="movieZipcode">32801</span>
+            <h1>Movies showing in <span class="font-italic font-weight-bold" id="movieZipcode"></span>
             </h1>
             <div class="text-center" id="moviesLoading">
               <div class="spinner-border" role="status">
@@ -119,6 +129,17 @@
               </div>
             </div>
             <div class="row" id="movieResults"></div>
+            <div class="fixed-bottom">
+              <div class="container">
+                <div class="navbar navbar-light bg-light justify-content-between">
+                  <div class="navbar-brand"></div>
+                  <div class="form-inline">
+                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                    <button type="button" class="btn btn-next btn-primary ml-2" id="movieNext" disabled>Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane fade pt-4" id="showtimes" role="tabpanel" aria-labelledby="showtimes-tab">
             <h1>Showtimes for <span class="font-italic font-weight-bold" id="movieTitle"></span> in <span
@@ -130,6 +151,17 @@
               </div>
             </div>
             <div id="showtimeResults"></div>
+            <div class="fixed-bottom">
+              <div class="container">
+                <div class="navbar navbar-light bg-light justify-content-between">
+                  <div class="navbar-brand"></div>
+                  <div class="form-inline">
+                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                    <button type="button" class="btn btn-next btn-primary ml-2" id="showtimeNext" disabled>Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
             <h1>Restaurants near <span class="font-italic font-weight-bold" id="theaterName"></span></h1>
@@ -139,8 +171,31 @@
               </div>
             </div>
             <div id="restaurantResults"></div>
+            <div class="fixed-bottom">
+              <div class="container">
+                <div class="navbar navbar-light bg-light justify-content-between">
+                  <div class="navbar-brand"></div>
+                  <div class="form-inline">
+                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                    <button type="button" class="btn btn-next btn-primary ml-2" id="restaurantNext"
+                      disabled>Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">...</div>
+          <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+            <div class="fixed-bottom">
+              <div class="container">
+                <div class="navbar navbar-light bg-light justify-content-between">
+                  <div class="navbar-brand"></div>
+                  <div class="form-inline">
+                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
