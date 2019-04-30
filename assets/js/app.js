@@ -279,7 +279,10 @@ function Application(storage) {
     $('#restaurantsLoader').show()
   }
 
-  this.loadRestaurants = function (location) {
+  this.loadRestaurants = function (location, append = false) {
+    if (!append) {
+      $('#restaurantResults').empty()
+    }
     $('#restaurantsLoading').show()
     $('#restaurantsLoader').hide()
     let offset = this.restaurants.length
@@ -395,8 +398,8 @@ function Application(storage) {
     }
   })
 
-  $('#restaurantsBtn').on('click', function() {
-    self.loadRestaurants(self.showtime.theatre.name)
+  $('#restaurantsBtn').on('click', function () {
+    self.loadRestaurants(self.showtime.theatre.name, append = true)
   })
 
   $('#restaurantNext, #summary-tab').on('click', function () {
