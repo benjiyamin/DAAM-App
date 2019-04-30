@@ -165,12 +165,15 @@
           </div>
           <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
             <h1>Restaurants near <span class="font-italic font-weight-bold" id="theaterName"></span></h1>
+            <div id="restaurantResults"></div>
             <div class="text-center" id="restaurantsLoading">
               <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
               </div>
             </div>
-            <div id="restaurantResults"></div>
+            <div class="text-center mt-4 pb-4" style="margin-bottom:54px; display:none;" id="restaurantsLoader">
+              <button type="button" class="btn btn-outline-primary btn-lg btn-block" id="restaurantsBtn">Load more restaurants</button>
+            </div>
             <div class="fixed-bottom">
               <div class="container">
                 <div class="navbar navbar-light bg-light justify-content-between">

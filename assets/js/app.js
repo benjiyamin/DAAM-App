@@ -13,9 +13,11 @@ function starsHtml(rating, maxRating = 5) {
 }
 
 function categoryString(categories) {
-  return categories.map(function (category) {
-    return category.title
-  }).join(', ')
+  if (categories) {
+    return categories.map(function (category) {
+      return category.title
+    }).join(', ')
+  }
 }
 
 function runtimeMinutes(runtime) {
@@ -62,17 +64,10 @@ function Application(storage) {
     let date = $('#dateInput').val().trim()
     let startTime = $('#startTimeInput').val().trim()
     let endTime = $('#endTimeInput').val().trim()
-    //let nextTabId = $(this)
-    //  .closest('div.tab-pane')
-    //  .next()
-    //  .attr('id')
-    //let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
     let $homeNext = $('#homeNext')
     if (zipCode && date && startTime && endTime) {
-      //$nextTab.removeClass('disabled')
       $homeNext.prop('disabled', false)
     } else {
-      //$nextTab.addClass('disabled')
       $homeNext.prop('disabled', true)
     }
   }
@@ -117,21 +112,14 @@ function Application(storage) {
         .addClass('card h-100 movie-card')
         .append(row)
         .click(function () {
-          //let nextTabId = $(this)
-          //  .closest('div.tab-pane')
-          //  .next()
-          //  .attr('id')
-          //let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
           let $movieNext = $('#movieNext')
           if ($(this).hasClass('selected')) {
             // None selected
             $movieNext.prop('disabled', true)
-            //$nextTab.addClass('disabled')
           } else {
             // Card selected
             $('.movie-card').removeClass('selected')
             $movieNext.prop('disabled', false)
-            //$nextTab.removeClass('disabled')
             self.movie = movie
           }
           $(this).toggleClass('selected')
@@ -202,21 +190,14 @@ function Application(storage) {
               .addClass('btn btn-info btn-showtime ml-1 mb-1')
               .text(time.format('h:mm a'))
               .click(function () {
-                //let nextTabId = $(this)
-                //  .closest('div.tab-pane')
-                //  .next()
-                //  .attr('id')
-                //let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
                 let $showtimeNext = $('#showtimeNext')
                 if ($(this).hasClass('active')) {
                   // None selected
                   $showtimeNext.prop('disabled', true)
-                  //$nextTab.addClass('disabled')
                 } else {
                   // Button selected
                   $('.btn-showtime').removeClass('active')
                   $showtimeNext.prop('disabled', false)
-                  //$nextTab.removeClass('disabled')
                   self.showtime = showtime
                 }
                 $(this).toggleClass('active')
@@ -295,13 +276,14 @@ function Application(storage) {
       $restaurantResults.append(card)
     })
     $('#restaurantsLoading').hide()
-    $restaurantResults.show()
+    $('#restaurantsLoader').show()
   }
 
   this.loadRestaurants = function (location) {
     $('#restaurantsLoading').show()
-    $('#restaurantResults').hide()
-    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant&sort_by=distance&limit=3&location=" + location;
+    $('#restaurantsLoader').hide()
+    let offset = this.restaurants.length
+    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant&sort_by=distance&limit=5&offset=" + offset + "&location=" + location;
     $.ajax({
       url: queryUrl,
       headers: {
@@ -310,7 +292,7 @@ function Application(storage) {
       method: 'GET',
       dataType: 'json',
     }).done(function (data) {
-      self.restaurants = data.businesses
+      self.restaurants = self.restaurants.concat(data.businesses)
       self.renderRestaurants()
     })
   }
@@ -411,6 +393,10 @@ function Application(storage) {
       self.loadRestaurants(self.showtime.theatre.name)
       $theaterName.text(self.showtime.theatre.name)
     }
+  })
+
+  $('#restaurantsBtn').on('click', function() {
+    self.loadRestaurants(self.showtime.theatre.name)
   })
 
   $('#restaurantNext, #summary-tab').on('click', function () {
