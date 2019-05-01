@@ -51,7 +51,7 @@
             </li>
           </ul>
           <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab">
               <div id="homeTab">
                 <form class="needs-validation" novalidate id="formStart">
                   <div class="form-row zipCode">
@@ -175,7 +175,7 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+            <div class="tab-pane fade active show" id="summary" role="tabpanel" aria-labelledby="summary-tab">
               <h1 class="text-center">Presented by Prestige Worldwide</h1>
               <div class="summaryResult">
 
@@ -186,13 +186,17 @@
                     </div>
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                        <!-- insert movie src -->
-                        <img class="card-img" alt="Movie Poster">
+                        <!-- insert movie src in img -->
+                        <img class="card-img" src="assets/images/default-movie.png" alt="Movie Poster">
                       </div>
-                      <div class="col-md-8 text-white bg-secondary">
+                      <div class="col-md-8 text-white theaterMovieCard">
                         <div class="card-body">
+                          <!-- Movie Title's Name -->
                           <h5 class="movieName"></h5>
+
+                          <!-- Theater's Name -->
                           <p class="theaterName"></p>
+                          <!-- Time selected -->
                           <p class="showTime"></p>
                         </div>
                       </div>
@@ -206,14 +210,19 @@
                       Your Restaurant Selection
                     </div>
                     <div class="card-body text-white bg-secondary">
+                      <!-- Restaurant's Name -->
                       <h5 class="restaurantName"></h5>
                       <div class="row card-text">
                         <div class="col">
+                          <!-- Star rating -->
                           <p class="starRating"></p>
+                          <!-- $$ for price & Food type -->
                           <p class="price"> | <span class=foodType></span></p>
                         </div>
                         <div class="col text-right">
+                          <!-- Number -->
                           <p class=restaurantNumber></p>
+                          <!-- Addrress -->
                           <p class="restaurantAddress"></p>
                         </div>
                       </div>
@@ -226,13 +235,11 @@
                     Your Uber Estimate is
                   </div>
                   <div class="card-body text-white bg-secondary text-center">
+                    <!-- Uber cost -->
                     <h5>$<span class=uberEstimate></span></h5>
                   </div>
                 </div>
               </div>
-
-
-
               <div class="fixed-bottom">
                 <div class="container">
                   <div class="navbar navbar-light bg-light justify-content-between">
