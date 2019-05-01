@@ -442,8 +442,8 @@ function Application(storage) {
     self.loadRides()
   })
 
-  $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
-    self.checkInputs()
-  })
+  //$('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
+  //  self.checkInputs()
+  //})
 
 }
