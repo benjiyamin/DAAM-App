@@ -14,3 +14,8 @@
 .wrapper {
     font-family: 'Libre Baskerville', serif;
 }
+
+.bg-secondary {
+    background-color: #cccccc;
+    background-image: linear-gradient(purple,blue);
+}
