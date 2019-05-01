@@ -17,10 +17,22 @@
 
 .bg-secondary {
     background-color: #cccccc;
-    background-image: linear-gradient(purple,blue);
+    background-image: radial-gradient(rgb(90, 90, 90), black);
 }
 
 .bg-dark {
     background-color: #cccccc;
     background-image: linear-gradient(black,grey);
+}
+
+.theater-card {
+    color: white;
+    background-color: #cccccc;
+    background-image: radial-gradient(rgb(90, 90, 90), black);
+}
+
+.h-100 {
+    color: white;
+    background-color: #cccccc;
+    background-image: radial-gradient(rgb(90, 90, 90), black);
 }
