@@ -4,12 +4,14 @@ $("#zipCodeInput").on("blur", function () {
     if (zipCodeLength === 5) {
         console.log("zip is validated")
         $("#invalid-feedback-zip").hide()
-        $("#homeNext").attr("disabled", false)
+        $("#homeNext").attr("disabled", true)
+        $("#zipCodeInput").addClass("form-control")
     }
     else {
         $("#invalid-feedback-zip").show()
         $("#invalid-feedback-zip").text("Please type in the 5 digit zip code.")
         $("#homeNext").attr("disabled", true)
+        $("#zipCodeInput").removeClass("form-control")
     }
 })
 window.addEventListener('load', function () {
