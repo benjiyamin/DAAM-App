@@ -466,6 +466,21 @@ function Application(storage) {
   })
 
   $('#restaurantNext, #summary-tab').on('click', function () {
+    $.ajax({
+      url: queryUrl,
+      method: 'GET',
+      dataType: 'json',
+    })
+    console.log(this)
+    //grab movie image
+    //grab movie name
+    //grab movie theater
+    //grab restaurant name
+    //restaurant rating
+    //restaurant price
+    //restaurant location
+
+
     self.loadRides()
   })
 

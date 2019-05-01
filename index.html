@@ -15,181 +15,244 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
 </head>
 
 <body>
+  <div class="wrapper">
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand mb-0 h1">Dinner and a Movie</span>
+    </nav>
 
-  <nav class="navbar navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1">Dinner and a Movie</span>
-  </nav>
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link disabled active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                aria-controls="home" aria-selected="true">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" id="movies-tab" data-toggle="tab" href="#movies" role="tab"
+                aria-controls="movies" aria-selected="false">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" id="showtimes-tab" data-toggle="tab" href="#showtimes" role="tab"
+                aria-controls="showtimes" aria-selected="false">Showtimes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
+                aria-controls="restaurants" aria-selected="false">Restaurants</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
+                aria-controls="summary" aria-selected="false">Summary</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div id="homeTab">
+                <form class="needs-validation" novalidate id="formStart">
+                  <div class="form-row zipCode">
+                    <label for="zipCodeInput">Zip Code:</label>
+                  </div>
+                  <div class="form-row">
+                    <input class="form-control col-4" type="number" id="zipCodeInput" placeholder="Zip Code"
+                      pattern=".{5,5}" required>
+                  </div>
+                  <div id="invalid-feedback-zip">
+                  </div>
 
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col">
-        <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-              aria-controls="home" aria-selected="true"><span class="badge badge-pill badge-light text-dark">1</span>
-              Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" id="movies-tab" data-toggle="tab" href="#movies" role="tab"
-              aria-controls="movies" aria-selected="false"><span class="badge badge-pill badge-light text-dark">2</span>
-              Movies</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" id="showtimes-tab" data-toggle="tab" href="#showtimes" role="tab"
-              aria-controls="showtimes" aria-selected="false"><span
-                class="badge badge-pill badge-light text-dark">3</span> Showtimes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
-              aria-controls="restaurants" aria-selected="false"><span
-                class="badge badge-pill badge-light text-dark">4</span> Restaurants</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
-              aria-controls="summary" aria-selected="false"><span
-                class="badge badge-pill badge-light text-dark">5</span> Summary</a>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div id="homeTab">
-              <form class="needs-validation" novalidate id="formStart">
-                <div class="form-row zipCode">
-                  <label for="zipCodeInput">Zip Code:</label>
-                </div>
-                <div class="form-row">
-                  <input class="form-control col-4" type="number" id="zipCodeInput" placeholder="Zip Code"
-                    pattern=".{5,5}" required>
-                </div>
-                <div id="invalid-feedback-zip">
-                </div>
+                  <div class="form-row">
+                    <label for="dateInput">Date:</label>
+                  </div>
+                  <div class="form-row">
+                    <input class="form-control col-4" type="date" id="dateInput" placeholder="Date" required>
+                  </div>
+                  <div class="invalid-feedback">
+                    Please choose a date from the calendar using the arrow.
+                  </div>
 
-                <div class="form-row">
-                  <label for="dateInput">Date:</label>
-                </div>
-                <div class="form-row">
-                  <input class="form-control col-4" type="date" id="dateInput" placeholder="Date" required>
-                </div>
-                <div class="invalid-feedback">
-                  Please choose a date from the calendar using the arrow.
-                </div>
+                  <div class="form-row">
+                    <label for="startTimeInput">Start Time:</label>
+                  </div>
+                  <div class="form-row">
+                    <input class="form-control col-4" type="time" id="startTimeInput" placeholder="Start Time" required>
+                  </div>
+                  <div class="invalid-feedback">
+                    Please type in the time using the formation HH:MM AM/PM.
+                  </div>
 
-                <div class="form-row">
-                  <label for="startTimeInput">Start Time:</label>
-                </div>
-                <div class="form-row">
-                  <input class="form-control col-4" type="time" id="startTimeInput" placeholder="Start Time" required>
-                </div>
-                <div class="invalid-feedback">
-                  Please type in the time using the formation HH:MM AM/PM.
-                </div>
-
-                <div class="form-row">
-                  <label for="endTimeInput">End Time:</label>
-                </div>
-                <div class="form-row">
-                  <input class="form-control col-4" type="time" id="endTimeInput" placeholder="End Time" required>
-                </div>
-                <div class="invalid-feedback">
-                  Please type in the time using the formation HH:MM AM/PM.
-                </div>
-              </form>
-            </div>
-            <div class="fixed-bottom">
-              <div class="container">
-                <div class="navbar navbar-light bg-light justify-content-between">
-                  <div class="navbar-brand"></div>
-                  <div class="form-inline">
-                    <button type="button" class="btn btn-next btn-primary ml-2" id="homeNext" disabled>Next</button>
+                  <div class="form-row">
+                    <label for="endTimeInput">End Time:</label>
+                  </div>
+                  <div class="form-row">
+                    <input class="form-control col-4" type="time" id="endTimeInput" placeholder="End Time" required>
+                  </div>
+                  <div class="invalid-feedback">
+                    Please type in the time using the formation HH:MM AM/PM.
+                  </div>
+                </form>
+              </div>
+              <div class="fixed-bottom">
+                <div class="container">
+                  <div class="navbar navbar-light bg-light justify-content-between">
+                    <div class="navbar-brand"></div>
+                    <div class="form-inline">
+                      <button type="button" class="btn btn-next btn-primary ml-2" id="homeNext" disabled>Next</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="tab-pane fade pt-4" id="movies" role="tabpanel" aria-labelledby="theaters-tab">
-            <h1>Movies showing in <span class="font-italic font-weight-bold" id="movieZipcode"></span>
-            </h1>
-            <div class="text-center" id="moviesLoading">
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+            <div class="tab-pane fade pt-4" id="movies" role="tabpanel" aria-labelledby="theaters-tab">
+              <h1>Movies showing in <span class="font-italic font-weight-bold" id="movieZipcode"></span>
+              </h1>
+              <div class="text-center" id="moviesLoading">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
-            </div>
-            <div class="row" id="movieResults"></div>
-            <div class="fixed-bottom">
-              <div class="container">
-                <div class="navbar navbar-light bg-light justify-content-between">
-                  <div class="navbar-brand"></div>
-                  <div class="form-inline">
-                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
-                    <button type="button" class="btn btn-next btn-primary ml-2" id="movieNext" disabled>Next</button>
+              <div class="row" id="movieResults"></div>
+              <div class="fixed-bottom">
+                <div class="container">
+                  <div class="navbar navbar-light bg-light justify-content-between">
+                    <div class="navbar-brand"></div>
+                    <div class="form-inline">
+                      <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                      <button type="button" class="btn btn-next btn-primary ml-2" id="movieNext" disabled>Next</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="tab-pane fade pt-4" id="showtimes" role="tabpanel" aria-labelledby="showtimes-tab">
-            <h1>Showtimes for <span class="font-italic font-weight-bold" id="movieTitle"></span> in <span
-                class="font-italic font-weight-bold" id="theaterZipcode"></span>
-            </h1>
-            <div class="text-center" id="showtimesLoading">
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+            <div class="tab-pane fade pt-4" id="showtimes" role="tabpanel" aria-labelledby="showtimes-tab">
+              <h1>Showtimes for <span class="font-italic font-weight-bold" id="movieTitle"></span> in <span
+                  class="font-italic font-weight-bold" id="theaterZipcode"></span>
+              </h1>
+              <div class="text-center" id="showtimesLoading">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
-            </div>
-            <div id="showtimeResults"></div>
-            <div class="fixed-bottom">
-              <div class="container">
-                <div class="navbar navbar-light bg-light justify-content-between">
-                  <div class="navbar-brand"></div>
-                  <div class="form-inline">
-                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
-                    <button type="button" class="btn btn-next btn-primary ml-2" id="showtimeNext" disabled>Next</button>
+              <div id="showtimeResults"></div>
+              <div class="fixed-bottom">
+                <div class="container">
+                  <div class="navbar navbar-light bg-light justify-content-between">
+                    <div class="navbar-brand"></div>
+                    <div class="form-inline">
+                      <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                      <button type="button" class="btn btn-next btn-primary ml-2" id="showtimeNext"
+                        disabled>Next</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
-            <h1>Restaurants near <span class="font-italic font-weight-bold" id="theaterName"></span></h1>
-            <div id="restaurantResults"></div>
-            <div class="text-center" id="restaurantsLoading">
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+            <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
+              <h1>Restaurants near <span class="font-italic font-weight-bold" id="theaterName"></span></h1>
+              <div id="restaurantResults"></div>
+              <div class="text-center" id="restaurantsLoading">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
               </div>
-            </div>
-            <div class="text-center mt-4 pb-4" style="margin-bottom:54px; display:none;" id="restaurantsLoader">
-              <button type="button" class="btn btn-outline-primary btn-lg btn-block" id="restaurantsBtn">Load more
-                restaurants</button>
-            </div>
-            <div class="fixed-bottom">
-              <div class="container">
-                <div class="navbar navbar-light bg-light justify-content-between">
-                  <div class="navbar-brand"></div>
-                  <div class="form-inline">
-                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
-                    <button type="button" class="btn btn-next btn-primary ml-2" id="restaurantNext"
-                      disabled>Next</button>
+              <div class="text-center mt-4 pb-4" style="margin-bottom:54px; display:none;" id="restaurantsLoader">
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block" id="restaurantsBtn">Load more
+                  restaurants</button>
+              </div>
+              <div class="fixed-bottom">
+                <div class="container">
+                  <div class="navbar navbar-light bg-light justify-content-between">
+                    <div class="navbar-brand"></div>
+                    <div class="form-inline">
+                      <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                      <button type="button" class="btn btn-next btn-primary ml-2" id="restaurantNext"
+                        disabled>Next</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-            <div class="fixed-bottom">
-              <div class="container">
-                <div class="navbar navbar-light bg-light justify-content-between">
-                  <div class="navbar-brand"></div>
-                  <div class="form-inline">
-                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+              <h1 class="text-center">Presented by Prestige Worldwide</h1>
+              <div class="summaryResult">
 
+                <div id="movieSelected">
+                  <div class="card mb-3 center-block">
+                    <div class="card-header text-white bg-dark text-center">
+                      Your Movie & Theater Selection
+                    </div>
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                        <!-- insert movie src in img -->
+                        <img class="card-img" src="assets/images/default-movie.png" alt="Movie Poster">
+                      </div>
+                      <div class="col-md-8 text-white theaterMovieCard">
+                        <div class="card-body">
+                          <!-- Movie Title's Name -->
+                          <h5 class="movieName"></h5>
+
+                          <!-- Theater's Name -->
+                          <p class="theaterName"></p>
+                          <!-- Time selected -->
+                          <p class="showTime"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="restaurantSelected">
+                  <div class="card">
+                    <div class="card-header text-white bg-dark text-center">
+                      Your Restaurant Selection
+                    </div>
+                    <div class="card-body text-white bg-secondary">
+                      <!-- Restaurant's Name -->
+                      <h5 class="restaurantName"></h5>
+                      <div class="row card-text">
+                        <div class="col">
+                          <!-- Star rating -->
+                          <p class="starRating"></p>
+                          <!-- $$ for price & Food type -->
+                          <p class="price"> | <span class=foodType></span></p>
+                        </div>
+                        <div class="col text-right">
+                          <!-- Number -->
+                          <p class=restaurantNumber></p>
+                          <!-- Addrress -->
+                          <p class="restaurantAddress"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="price">
+                  <div class="card-header text-white bg-dark text-center">
+                    Your Uber Estimate is
+                  </div>
+                  <div class="card-body text-white bg-secondary text-center">
+                    <!-- Uber cost -->
+                    <h5>$<span class=uberEstimate></span></h5>
+                  </div>
+                </div>
+              </div>
+              <div class="fixed-bottom">
+                <div class="container">
+                  <div class="navbar navbar-light bg-light justify-content-between">
+                    <div class="navbar-brand"></div>
+                    <div class="form-inline">
+                      <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
