@@ -61,13 +61,35 @@ function Application(storage) {
   let geoUser = 'mohican'
   let uberToken = 'VueW1n9COS5QSaDnRzfYKJjI26euN7SN_QiYHEVS'
 
-  this.checkInputs = function () {
+  this.inputsValid = function() {
     let zipCode = $('#zipCodeInput').val().trim()
     let date = $('#dateInput').val().trim()
     let startTime = $('#startTimeInput').val().trim()
     let endTime = $('#endTimeInput').val().trim()
-    let $homeNext = $('#homeNext')
     if (zipCode && date && startTime && endTime) {
+      return true
+    }
+  }
+
+  this.setNavs = function() {
+    $('#myTab a').not('#home-tab').addClass('disabled')
+    if (this.inputsValid()) {
+      $('#movies-tab').removeClass('disabled')
+      if (this.movie) {
+        $('#showtimes-tab').removeClass('disabled')
+        if (this.showtime) {
+          $('#restaurants-tab').removeClass('disabled')
+          if (this.restaurant) {
+            $('#summary-tab').removeClass('disabled')
+          }
+        }
+      }
+    }
+  }
+
+  this.checkInputs = function () {
+    let $homeNext = $('#homeNext')
+    if (this.inputsValid()) {
       $homeNext.prop('disabled', false)
     } else {
       $homeNext.prop('disabled', true)
@@ -118,6 +140,9 @@ function Application(storage) {
           if ($(this).hasClass('selected')) {
             // None selected
             $movieNext.prop('disabled', true)
+            self.movie = undefined
+            self.showtime = undefined
+            self.restaurant = undefined
           } else {
             // Card selected
             $('.movie-card').removeClass('selected')
@@ -125,6 +150,7 @@ function Application(storage) {
             self.movie = movie
           }
           $(this).toggleClass('selected')
+          self.setNavs()
         })
       let col = $('<div>')
         .addClass('col-6 col-lg-4 mt-4')
@@ -197,6 +223,8 @@ function Application(storage) {
                 if ($(this).hasClass('active')) {
                   // None selected
                   $showtimeNext.prop('disabled', true)
+                  self.showtime = undefined
+                  self.restaurant = undefined
                 } else {
                   // Button selected
                   $('.btn-showtime').removeClass('active')
@@ -204,6 +232,7 @@ function Application(storage) {
                   self.showtime = showtime
                 }
                 $(this).toggleClass('active')
+                self.setNavs()
               })
             times.append(button)
           }
@@ -270,6 +299,7 @@ function Application(storage) {
           if ($(this).hasClass('selected')) {
             // None selected
             $restaurantNext.prop('disabled', true)
+            self.restaurant = undefined
           } else {
             // Card selected
             $('.restaurant-card').removeClass('selected')
@@ -277,6 +307,7 @@ function Application(storage) {
             self.restaurant = restaurant
           }
           $(this).toggleClass('selected')
+          self.setNavs()
         })
       $restaurantResults.append(card)
     })
@@ -354,6 +385,7 @@ function Application(storage) {
             let zipCode = data.postalCodes[0].postalCode
             $('#zipCodeInput').val(zipCode)
             self.checkInputs()
+            self.setNavs()
           })
         },
         function error(error_message) {
@@ -414,7 +446,7 @@ function Application(storage) {
     let startTime = $('#startTimeInput').val().trim()
     let endTime = $('#endTimeInput').val().trim()
     let $theaterZipcode = $('#theaterZipcode')
-    if (startTime !== self.startTime || endTime !== self.endTime) {
+    if (startTime !== self.startTime || endTime !== self.endTime || $movieTitle.text() !== self.movie.title) {
       self.loadShowtimes(startTime, endTime)
       $movieTitle.text(self.movie.title)
       $theaterZipcode.text(self.zipCode)
@@ -432,15 +464,16 @@ function Application(storage) {
 
   $('#restaurantsBtn').on('click', function () {
     self.loadRestaurants(self.showtime.theatre.name, append = true)
-    self.loadTheaterLocation(self.showtime.theatre.name)
+    //self.loadTheaterLocation(self.showtime.theatre.name)
   })
 
   $('#restaurantNext, #summary-tab').on('click', function () {
     self.loadRides()
   })
 
-  //$('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
-  //  self.checkInputs()
-  //})
+  $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
+    self.checkInputs()
+    self.setNavs()
+  })
 
 }
