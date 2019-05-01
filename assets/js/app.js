@@ -53,11 +53,13 @@ function Application(storage) {
   this.showtime = undefined
   this.restaurants = []
   this.restaurant = undefined
+  this.rides = []
   let yelpApi = 'cqri1UB-gnIXTN3mPx4GAi4vRAEpWc7KDG3n3HS2uC6nNBaG45cH3_8Wi7aPN1v5GHjHihhJ5MVWUHC1f8N1muxqS8Muqtp9FdqtWe3FVvY3CI0uDVpshApC41nEXHYx'
   let tmsApi = 'kq8d5zhpr87bvbz6cufpdgqt'
   let gmapsApi = 'AIzaSyDWFMiZeZwNNAdJUZsfMZ7edVnxgLOSfDs'
   let omdbApi = 'bd02b758'
   let geoUser = 'mohican'
+  let uberToken = 'VueW1n9COS5QSaDnRzfYKJjI26euN7SN_QiYHEVS'
 
   this.checkInputs = function () {
     let zipCode = $('#zipCodeInput').val().trim()
@@ -279,6 +281,20 @@ function Application(storage) {
     $('#restaurantsLoader').show()
   }
 
+  this.loadTheaterLocation = function (location) {
+    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=1&term=" + location + '&location=' + self.zipCode;
+    $.ajax({
+      url: queryUrl,
+      headers: {
+        'Authorization': 'Bearer ' + yelpApi,
+      },
+      method: 'GET',
+      dataType: 'json',
+    }).done(function (data) {
+      self.showtime.theatre.coordinates = data.businesses[0].coordinates
+    })
+  }
+
   this.loadRestaurants = function (location, append = false) {
     if (!append) {
       $('#restaurantResults').empty()
@@ -297,6 +313,24 @@ function Application(storage) {
     }).done(function (data) {
       self.restaurants = self.restaurants.concat(data.businesses)
       self.renderRestaurants()
+    })
+  }
+
+  this.loadRides = function () {
+    let startLat = this.showtime.theatre.coordinates.latitude
+    let startLng = this.showtime.theatre.coordinates.longitude
+    let endLat = this.restaurant.coordinates.latitude
+    let endLng = this.restaurant.coordinates.longitude
+    let queryUrl = 'https://cors-anywhere.herokuapp.com/https://api.uber.com/v1.2/estimates/price?start_latitude=' + startLat + '&start_longitude=' + startLng + '&end_latitude=' + endLat + '&end_longitude=' + endLng
+    $.ajax({
+      url: queryUrl,
+      headers: {
+        'Authorization': 'Token ' + uberToken
+      },
+      method: 'GET',
+      dataType: 'json',
+    }).done(function (data) {
+      self.rides = data.prices
     })
   }
 
@@ -395,15 +429,17 @@ function Application(storage) {
     if ($theaterName.text() !== self.showtime.theatre.name) {
       self.loadRestaurants(self.showtime.theatre.name)
       $theaterName.text(self.showtime.theatre.name)
+      self.loadTheaterLocation(self.showtime.theatre.name)
     }
   })
 
   $('#restaurantsBtn').on('click', function () {
     self.loadRestaurants(self.showtime.theatre.name, append = true)
+    self.loadTheaterLocation(self.showtime.theatre.name)
   })
 
   $('#restaurantNext, #summary-tab').on('click', function () {
-
+    self.loadRides()
   })
 
   $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
