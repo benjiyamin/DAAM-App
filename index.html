@@ -28,8 +28,8 @@
       <div class="col">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link disabled active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-              aria-selected="true">Home</a>
+            <a class="nav-link disabled active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+              aria-controls="home" aria-selected="true">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" id="movies-tab" data-toggle="tab" href="#movies" role="tab"
@@ -44,30 +44,29 @@
               aria-controls="restaurants" aria-selected="false">Restaurants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary"
-              aria-selected="false">Summary</a>
+            <a class="nav-link disabled" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
+              aria-controls="summary" aria-selected="false">Summary</a>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div id="homeTab">
               <form class="needs-validation" novalidate id="formStart">
-
                 <div class="form-row">
                   <label for="zipCodeInput">Zip Code:</label>
                 </div>
                 <div class="form-row">
-                  <input class="form-control col-2" type="number" id="zipCodeInput" placeholder="Zip Code" required>
+                  <input class="form-control col-3" type="number" id="zipCodeInput" placeholder="Zip Code"
+                    pattern=".{5,5}" required>
                 </div>
-                <div class="invalid-feedback">
-                  Please type in the 5 digit zip code.
+                <div id="invalid-feedback-zip">
                 </div>
 
                 <div class="form-row">
                   <label for="dateInput">Date:</label>
                 </div>
                 <div class="form-row">
-                  <input class="form-control col-2" type="date" id="dateInput" placeholder="Date" required>
+                  <input class="form-control col-3" type="date" id="dateInput" placeholder="Date" required>
                 </div>
                 <div class="invalid-feedback">
                   Please choose a date from the calendar using the arrow.
@@ -77,7 +76,7 @@
                   <label for="startTimeInput">Start Time:</label>
                 </div>
                 <div class="form-row">
-                  <input class="form-control col-2" type="time" id="startTimeInput" placeholder="Start Time" required>
+                  <input class="form-control col-3" type="time" id="startTimeInput" placeholder="Start Time" required>
                 </div>
                 <div class="invalid-feedback">
                   Please type in the time using the formation HH:MM AM/PM.
@@ -87,25 +86,10 @@
                   <label for="endTimeInput">End Time:</label>
                 </div>
                 <div class="form-row">
-                  <input class="form-control col-2" type="time" id="endTimeInput" placeholder="End Time" required>
+                  <input class="form-control col-3" type="time" id="endTimeInput" placeholder="End Time" required>
                 </div>
                 <div class="invalid-feedback">
                   Please type in the time using the formation HH:MM AM/PM.
-                </div>
-
-                <div class="form-row">
-                  <label for="movieTitleInput">Movie Title:</label>
-                </div>
-                <div class="form-row">
-                  <input class="form-control col-2" type="text" id="movieTitleInput" placeholder="Movie Search"
-                    required>
-                </div>
-                <div class="invalid-feedback">
-                  Please type in the movie title.
-                </div>
-
-                <div class="form-row">
-                  <input class="btn btn-primary" id="searchButton" type="submit" value="Search">
                 </div>
               </form>
             </div>
@@ -114,7 +98,7 @@
                 <div class="navbar navbar-light bg-light justify-content-between">
                   <div class="navbar-brand"></div>
                   <div class="form-inline">
-                    <button type="button" class="btn btn-next btn-primary ml-2" id="homeNext" disabled>Next</button>
+                    <button type="button" class="btn btn-next btn-primary ml-2" id="homeNext">Next</button>
                   </div>
                 </div>
               </div>
@@ -208,10 +192,10 @@
     integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
+    </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+    </script>
 
   <!-- Link to Moment.js -->
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -221,6 +205,7 @@
 
   <script src="assets/js/storage.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/validation.js"></script>
 
   <script>
     $(document).ready(function () {

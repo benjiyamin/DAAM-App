@@ -417,8 +417,8 @@ function Application(storage) {
 
   })
 
-  $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
-    self.checkInputs()
-  })
+  //$('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
+  //  self.checkInputs()
+  //})
 
 }
