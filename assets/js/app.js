@@ -13,9 +13,11 @@ function starsHtml(rating, maxRating = 5) {
 }
 
 function categoryString(categories) {
-  return categories.map(function (category) {
-    return category.title
-  }).join(', ')
+  if (categories) {
+    return categories.map(function (category) {
+      return category.title
+    }).join(', ')
+  }
 }
 
 function runtimeMinutes(runtime) {
@@ -51,28 +53,23 @@ function Application(storage) {
   this.showtime = undefined
   this.restaurants = []
   this.restaurant = undefined
+  this.rides = []
   let yelpApi = 'cqri1UB-gnIXTN3mPx4GAi4vRAEpWc7KDG3n3HS2uC6nNBaG45cH3_8Wi7aPN1v5GHjHihhJ5MVWUHC1f8N1muxqS8Muqtp9FdqtWe3FVvY3CI0uDVpshApC41nEXHYx'
   let tmsApi = 'kq8d5zhpr87bvbz6cufpdgqt'
   let gmapsApi = 'AIzaSyDWFMiZeZwNNAdJUZsfMZ7edVnxgLOSfDs'
   let omdbApi = 'bd02b758'
   let geoUser = 'mohican'
+  let uberToken = 'VueW1n9COS5QSaDnRzfYKJjI26euN7SN_QiYHEVS'
 
   this.checkInputs = function () {
     let zipCode = $('#zipCodeInput').val().trim()
     let date = $('#dateInput').val().trim()
     let startTime = $('#startTimeInput').val().trim()
     let endTime = $('#endTimeInput').val().trim()
-    //let nextTabId = $(this)
-    //  .closest('div.tab-pane')
-    //  .next()
-    //  .attr('id')
-    //let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
     let $homeNext = $('#homeNext')
     if (zipCode && date && startTime && endTime) {
-      //$nextTab.removeClass('disabled')
       $homeNext.prop('disabled', false)
     } else {
-      //$nextTab.addClass('disabled')
       $homeNext.prop('disabled', true)
     }
   }
@@ -117,21 +114,14 @@ function Application(storage) {
         .addClass('card h-100 movie-card')
         .append(row)
         .click(function () {
-          //let nextTabId = $(this)
-          //  .closest('div.tab-pane')
-          //  .next()
-          //  .attr('id')
-          //let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
           let $movieNext = $('#movieNext')
           if ($(this).hasClass('selected')) {
             // None selected
             $movieNext.prop('disabled', true)
-            //$nextTab.addClass('disabled')
           } else {
             // Card selected
             $('.movie-card').removeClass('selected')
             $movieNext.prop('disabled', false)
-            //$nextTab.removeClass('disabled')
             self.movie = movie
           }
           $(this).toggleClass('selected')
@@ -202,21 +192,14 @@ function Application(storage) {
               .addClass('btn btn-info btn-showtime ml-1 mb-1')
               .text(time.format('h:mm a'))
               .click(function () {
-                //let nextTabId = $(this)
-                //  .closest('div.tab-pane')
-                //  .next()
-                //  .attr('id')
-                //let $nextTab = $('#myTab a[href="#' + nextTabId + '"]')
                 let $showtimeNext = $('#showtimeNext')
                 if ($(this).hasClass('active')) {
                   // None selected
                   $showtimeNext.prop('disabled', true)
-                  //$nextTab.addClass('disabled')
                 } else {
                   // Button selected
                   $('.btn-showtime').removeClass('active')
                   $showtimeNext.prop('disabled', false)
-                  //$nextTab.removeClass('disabled')
                   self.showtime = showtime
                 }
                 $(this).toggleClass('active')
@@ -295,13 +278,11 @@ function Application(storage) {
       $restaurantResults.append(card)
     })
     $('#restaurantsLoading').hide()
-    $restaurantResults.show()
+    $('#restaurantsLoader').show()
   }
 
-  this.loadRestaurants = function (location) {
-    $('#restaurantsLoading').show()
-    $('#restaurantResults').hide()
-    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant&sort_by=distance&limit=3&location=" + location;
+  this.loadTheaterLocation = function (location) {
+    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=1&term=" + location + '&location=' + self.zipCode;
     $.ajax({
       url: queryUrl,
       headers: {
@@ -310,8 +291,46 @@ function Application(storage) {
       method: 'GET',
       dataType: 'json',
     }).done(function (data) {
-      self.restaurants = data.businesses
+      self.showtime.theatre.coordinates = data.businesses[0].coordinates
+    })
+  }
+
+  this.loadRestaurants = function (location, append = false) {
+    if (!append) {
+      $('#restaurantResults').empty()
+    }
+    $('#restaurantsLoading').show()
+    $('#restaurantsLoader').hide()
+    let offset = this.restaurants.length
+    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant&sort_by=distance&limit=5&offset=" + offset + "&location=" + location;
+    $.ajax({
+      url: queryUrl,
+      headers: {
+        'Authorization': 'Bearer ' + yelpApi,
+      },
+      method: 'GET',
+      dataType: 'json',
+    }).done(function (data) {
+      self.restaurants = self.restaurants.concat(data.businesses)
       self.renderRestaurants()
+    })
+  }
+
+  this.loadRides = function () {
+    let startLat = this.showtime.theatre.coordinates.latitude
+    let startLng = this.showtime.theatre.coordinates.longitude
+    let endLat = this.restaurant.coordinates.latitude
+    let endLng = this.restaurant.coordinates.longitude
+    let queryUrl = 'https://cors-anywhere.herokuapp.com/https://api.uber.com/v1.2/estimates/price?start_latitude=' + startLat + '&start_longitude=' + startLng + '&end_latitude=' + endLat + '&end_longitude=' + endLng
+    $.ajax({
+      url: queryUrl,
+      headers: {
+        'Authorization': 'Token ' + uberToken
+      },
+      method: 'GET',
+      dataType: 'json',
+    }).done(function (data) {
+      self.rides = data.prices
     })
   }
 
@@ -410,11 +429,17 @@ function Application(storage) {
     if ($theaterName.text() !== self.showtime.theatre.name) {
       self.loadRestaurants(self.showtime.theatre.name)
       $theaterName.text(self.showtime.theatre.name)
+      self.loadTheaterLocation(self.showtime.theatre.name)
     }
   })
 
-  $('#restaurantNext, #summary-tab').on('click', function () {
+  $('#restaurantsBtn').on('click', function () {
+    self.loadRestaurants(self.showtime.theatre.name, append = true)
+    self.loadTheaterLocation(self.showtime.theatre.name)
+  })
 
+  $('#restaurantNext, #summary-tab').on('click', function () {
+    self.loadRides()
   })
 
   //$('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
