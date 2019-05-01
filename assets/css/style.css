@@ -4,3 +4,13 @@
     border-width: 2px;
     border-color: #007bff
 }
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wrapper {
+    font-family: 'Libre Baskerville', serif;
+}
