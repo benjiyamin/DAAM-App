@@ -1,16 +1,10 @@
+body {
+    font-family: 'Libre Baskerville', serif;
+}
+
 .card.selected {
     border-width: 2px;
     border-color: #007bff
-}
-
-.center-block {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.wrapper {
-    font-family: 'Libre Baskerville', serif;
 }
 
 .bg-secondary {
@@ -24,30 +18,7 @@
     background-image: linear-gradient(black,grey);
 }
 
-.nav-tabs>li>a {
-    color: white;
-
-}
-
-.theater-card {
-    color: white;
-    background-color: #cccccc;
-    background-image: radial-gradient(rgb(90, 90, 90), black);
-}
-
-.h-100 {
-    color: white;
-    background-color: #cccccc;
-    background-image: radial-gradient(rgb(90, 90, 90), black);
-}
-
-.restaurant-card {
-    color: white;
-    background-color: #cccccc;
-    background-image: radial-gradient(rgb(90, 90, 90), black);
-}
-
-.theaterMovieCard {
+.theater-card, .movie-card, .restaurant-card, .theaterMovieCard {
     color: white;
     background-color: #cccccc;
     background-image: radial-gradient(rgb(90, 90, 90), black);
