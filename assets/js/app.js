@@ -61,13 +61,35 @@ function Application(storage) {
   let geoUser = 'mohican'
   let uberToken = 'VueW1n9COS5QSaDnRzfYKJjI26euN7SN_QiYHEVS'
 
-  this.checkInputs = function () {
+  this.inputsValid = function() {
     let zipCode = $('#zipCodeInput').val().trim()
     let date = $('#dateInput').val().trim()
     let startTime = $('#startTimeInput').val().trim()
     let endTime = $('#endTimeInput').val().trim()
-    let $homeNext = $('#homeNext')
     if (zipCode && date && startTime && endTime) {
+      return true
+    }
+  }
+
+  this.setNavs = function() {
+    $('#myTab a').not('#home-tab').addClass('disabled')
+    if (this.inputsValid()) {
+      $('#movies-tab').removeClass('disabled')
+      if (this.movie) {
+        $('#showtimes-tab').removeClass('disabled')
+        if (this.showtime) {
+          $('#restaurants-tab').removeClass('disabled')
+          if (this.restaurant) {
+            $('#summary-tab').removeClass('disabled')
+          }
+        }
+      }
+    }
+  }
+
+  this.checkInputs = function () {
+    let $homeNext = $('#homeNext')
+    if (this.inputsValid()) {
       $homeNext.prop('disabled', false)
     } else {
       $homeNext.prop('disabled', true)
@@ -111,13 +133,16 @@ function Application(storage) {
         .addClass('row h-100 no-gutters')
         .append(poster, info)
       let card = $('<div>')
-        .addClass('card h-100 movie-card')
+        .addClass('card h-100 shadow movie-card')
         .append(row)
         .click(function () {
           let $movieNext = $('#movieNext')
           if ($(this).hasClass('selected')) {
             // None selected
             $movieNext.prop('disabled', true)
+            self.movie = undefined
+            self.showtime = undefined
+            self.restaurant = undefined
           } else {
             // Card selected
             $('.movie-card').removeClass('selected')
@@ -125,6 +150,7 @@ function Application(storage) {
             self.movie = movie
           }
           $(this).toggleClass('selected')
+          self.setNavs()
         })
       let col = $('<div>')
         .addClass('col-6 col-lg-4 mt-4')
@@ -135,11 +161,12 @@ function Application(storage) {
     $movieResults.show()
   }
 
-  this.loadMovies = function (zipCode, date, startTime, endTime) {
+  //this.loadMovies = function (zipCode, date, startTime, endTime) {
+  this.loadMovies = function (zipCode, date) {
     this.zipCode = zipCode
     this.date = date
-    this.startTime = startTime
-    this.endTime = endTime
+    //this.startTime = startTime
+    //this.endTime = endTime
     $('#moviesLoading').show()
     $('#movieResults').hide()
     let queryUrl = 'https://data.tmsapi.com/v1.1/movies/showings?startDate=' + date + '&zip=' + zipCode + '&api_key=' + tmsApi
@@ -196,6 +223,8 @@ function Application(storage) {
                 if ($(this).hasClass('active')) {
                   // None selected
                   $showtimeNext.prop('disabled', true)
+                  self.showtime = undefined
+                  self.restaurant = undefined
                 } else {
                   // Button selected
                   $('.btn-showtime').removeClass('active')
@@ -203,6 +232,7 @@ function Application(storage) {
                   self.showtime = showtime
                 }
                 $(this).toggleClass('active')
+                self.setNavs()
               })
             times.append(button)
           }
@@ -211,7 +241,7 @@ function Application(storage) {
           .addClass('card-body row')
           .append(location, times)
         let card = $('<div>')
-          .addClass('card mt-4 theater-card')
+          .addClass('card mt-4 shadow theater-card')
           .append(cardBody)
         $showtimeResults.append(card)
       }
@@ -220,7 +250,9 @@ function Application(storage) {
     $showtimeResults.show()
   }
 
-  this.loadShowtimes = function () {
+  this.loadShowtimes = function (startTime, endTime) {
+    this.startTime = startTime
+    this.endTime = endTime
     $('#showtimesLoading').show()
     $('#showtimeResults').hide()
     self.theaters = _.groupBy(self.movie.showtimes, function (showtime) {
@@ -260,13 +292,14 @@ function Application(storage) {
         .addClass('card-body')
         .append(name, row)
       let card = $('<div>')
-        .addClass('card mt-4 restaurant-card')
+        .addClass('card mt-4 shadow restaurant-card')
         .append(cardBody)
         .click(function () {
           let $restaurantNext = $('#restaurantNext')
           if ($(this).hasClass('selected')) {
             // None selected
             $restaurantNext.prop('disabled', true)
+            self.restaurant = undefined
           } else {
             // Card selected
             $('.restaurant-card').removeClass('selected')
@@ -274,6 +307,7 @@ function Application(storage) {
             self.restaurant = restaurant
           }
           $(this).toggleClass('selected')
+          self.setNavs()
         })
       $restaurantResults.append(card)
     })
@@ -351,6 +385,7 @@ function Application(storage) {
             let zipCode = data.postalCodes[0].postalCode
             $('#zipCodeInput').val(zipCode)
             self.checkInputs()
+            self.setNavs()
           })
         },
         function error(error_message) {
@@ -400,25 +435,19 @@ function Application(storage) {
   $('#homeNext, #movies-tab').on('click', function () {
     let zipCode = $('#zipCodeInput').val().trim()
     let date = $('#dateInput').val().trim()
-    let startTime = $('#startTimeInput').val().trim()
-    let endTime = $('#endTimeInput').val().trim()
-    if (zipCode !== self.zipCode || date !== self.date || startTime !== self.startTime || endTime !== self.endTime) {
-      self.loadMovies(zipCode, date, startTime, endTime)
+    if (zipCode !== self.zipCode || date !== self.date) {
+      self.loadMovies(zipCode, date)
       $('#movieZipcode').text(self.zipCode)
     }
   })
 
   $('#movieNext, #showtimes-tab').on('click', function () {
     let $movieTitle = $('#movieTitle')
-    let zipCode = $('#zipCodeInput').val().trim()
-    let date = $('#dateInput').val().trim()
     let startTime = $('#startTimeInput').val().trim()
     let endTime = $('#endTimeInput').val().trim()
     let $theaterZipcode = $('#theaterZipcode')
-    //if ($movieTitle.text() !== self.movie.title || $theaterZipcode.text() !== self.zipCode) {
-    if ($movieTitle.text() !== self.movie.title || zipCode !== self.zipCode || date !== self.date ||
-      startTime !== self.startTime || endTime !== self.endTime) {
-      self.loadShowtimes()
+    if (startTime !== self.startTime || endTime !== self.endTime || $movieTitle.text() !== self.movie.title) {
+      self.loadShowtimes(startTime, endTime)
       $movieTitle.text(self.movie.title)
       $theaterZipcode.text(self.zipCode)
     }
@@ -435,7 +464,7 @@ function Application(storage) {
 
   $('#restaurantsBtn').on('click', function () {
     self.loadRestaurants(self.showtime.theatre.name, append = true)
-    self.loadTheaterLocation(self.showtime.theatre.name)
+    //self.loadTheaterLocation(self.showtime.theatre.name)
   })
 
   $('#restaurantNext, #summary-tab').on('click', function () {
@@ -457,8 +486,9 @@ function Application(storage) {
     self.loadRides()
   })
 
-  //$('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
-  //  self.checkInputs()
-  //})
+  $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
+    self.checkInputs()
+    self.setNavs()
+  })
 
 }
