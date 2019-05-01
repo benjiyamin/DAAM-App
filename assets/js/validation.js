@@ -4,7 +4,7 @@ $("#zipCodeInput").on("blur", function () {
     if (zipCodeLength === 5) {
         console.log("zip is validated")
         $("#invalid-feedback-zip").hide()
-        $("#homeNext").attr("disabled", true)
+        $("#homeNext").attr("disabled", false)
         $("#zipCodeInput").addClass("form-control")
     }
     else {
