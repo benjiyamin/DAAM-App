@@ -111,7 +111,7 @@ function Application(storage) {
         .addClass('row h-100 no-gutters')
         .append(poster, info)
       let card = $('<div>')
-        .addClass('card h-100 movie-card')
+        .addClass('card h-100 shadow movie-card')
         .append(row)
         .click(function () {
           let $movieNext = $('#movieNext')
@@ -212,7 +212,7 @@ function Application(storage) {
           .addClass('card-body row')
           .append(location, times)
         let card = $('<div>')
-          .addClass('card mt-4 theater-card')
+          .addClass('card mt-4 shadow theater-card')
           .append(cardBody)
         $showtimeResults.append(card)
       }
@@ -263,7 +263,7 @@ function Application(storage) {
         .addClass('card-body')
         .append(name, row)
       let card = $('<div>')
-        .addClass('card mt-4 restaurant-card')
+        .addClass('card mt-4 shadow restaurant-card')
         .append(cardBody)
         .click(function () {
           let $restaurantNext = $('#restaurantNext')
