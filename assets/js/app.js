@@ -135,11 +135,12 @@ function Application(storage) {
     $movieResults.show()
   }
 
-  this.loadMovies = function (zipCode, date, startTime, endTime) {
+  //this.loadMovies = function (zipCode, date, startTime, endTime) {
+  this.loadMovies = function (zipCode, date) {
     this.zipCode = zipCode
     this.date = date
-    this.startTime = startTime
-    this.endTime = endTime
+    //this.startTime = startTime
+    //this.endTime = endTime
     $('#moviesLoading').show()
     $('#movieResults').hide()
     let queryUrl = 'https://data.tmsapi.com/v1.1/movies/showings?startDate=' + date + '&zip=' + zipCode + '&api_key=' + tmsApi
@@ -220,7 +221,9 @@ function Application(storage) {
     $showtimeResults.show()
   }
 
-  this.loadShowtimes = function () {
+  this.loadShowtimes = function (startTime, endTime) {
+    this.startTime = startTime
+    this.endTime = endTime
     $('#showtimesLoading').show()
     $('#showtimeResults').hide()
     self.theaters = _.groupBy(self.movie.showtimes, function (showtime) {
@@ -400,25 +403,19 @@ function Application(storage) {
   $('#homeNext, #movies-tab').on('click', function () {
     let zipCode = $('#zipCodeInput').val().trim()
     let date = $('#dateInput').val().trim()
-    let startTime = $('#startTimeInput').val().trim()
-    let endTime = $('#endTimeInput').val().trim()
-    if (zipCode !== self.zipCode || date !== self.date || startTime !== self.startTime || endTime !== self.endTime) {
-      self.loadMovies(zipCode, date, startTime, endTime)
+    if (zipCode !== self.zipCode || date !== self.date) {
+      self.loadMovies(zipCode, date)
       $('#movieZipcode').text(self.zipCode)
     }
   })
 
   $('#movieNext, #showtimes-tab').on('click', function () {
     let $movieTitle = $('#movieTitle')
-    let zipCode = $('#zipCodeInput').val().trim()
-    let date = $('#dateInput').val().trim()
     let startTime = $('#startTimeInput').val().trim()
     let endTime = $('#endTimeInput').val().trim()
     let $theaterZipcode = $('#theaterZipcode')
-    //if ($movieTitle.text() !== self.movie.title || $theaterZipcode.text() !== self.zipCode) {
-    if ($movieTitle.text() !== self.movie.title || zipCode !== self.zipCode || date !== self.date ||
-      startTime !== self.startTime || endTime !== self.endTime) {
-      self.loadShowtimes()
+    if (startTime !== self.startTime || endTime !== self.endTime) {
+      self.loadShowtimes(startTime, endTime)
       $movieTitle.text(self.movie.title)
       $theaterZipcode.text(self.zipCode)
     }
