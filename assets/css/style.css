@@ -13,28 +13,15 @@ body {
     color: white;
     background-color: #cccccc;
     background-image: grey;
-    border-bottom-style: 4px solid black;
     
-
-
-  
 }
 
 .theater-card, .movie-card, .restaurant-card, .theaterMovieCard, .bg-secondary {
     color: white;
     background-color: #cccccc;
-<<<<<<< HEAD
-    background-image: url(../images/gun_metal.png);
+    background-image: url("../images/gun_metal.png");
     background-repeat: repeat;
-    /* background-size: cover; */
     
-}
-
-
-.google-map {
-    max-height: 400px;
-=======
-    background-image: radial-gradient(rgb(90, 90, 90), black);
 }
 
 .background-image{
@@ -46,5 +33,4 @@ body {
 .app-description {
     color: white !important;
 
->>>>>>> ee855be4643571032ee1fcad9e62487831620f2b
 }
