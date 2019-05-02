@@ -1,6 +1,6 @@
 
 body {
-    font-family: 'Libre Baskerville', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .card.selected {
@@ -13,6 +13,8 @@ body {
     color: white;
     background-color: #cccccc;
     background-image: grey;
+    border-bottom-style: 4px solid black;
+    
 
 
   
@@ -27,6 +29,7 @@ body {
     
 }
 
-.carousel-item>img {
+
+.google-map {
     max-height: 400px;
 }
