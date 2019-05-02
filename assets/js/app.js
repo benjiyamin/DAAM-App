@@ -192,10 +192,8 @@ function Application(storage) {
   }
 
   this.renderShowtimes = function () {
-
     let $showtimeResults = $('#showtimeResults')
     $showtimeResults.empty()
-
     for (const theaterName in this.theaters) {
       if (this.theaters.hasOwnProperty(theaterName)) {
         const showtimes = this.theaters[theaterName];
@@ -468,12 +466,6 @@ function Application(storage) {
   })
 
   $('#restaurantNext, #summary-tab').on('click', function () {
-    $.ajax({
-      url: queryUrl,
-      method: 'GET',
-      dataType: 'json',
-    })
-    console.log(this)
     //grab movie image
     //grab movie name
     //grab movie theater
@@ -481,8 +473,6 @@ function Application(storage) {
     //restaurant rating
     //restaurant price
     //restaurant location
-
-
     self.loadRides()
   })
 
