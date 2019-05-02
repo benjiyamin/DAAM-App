@@ -1,6 +1,6 @@
 
 body {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Libre Baskerville', sans-serif;
 }
 
 .card.selected {
@@ -8,27 +8,22 @@ body {
     border-color: #007bff
 }
 
-.bg-secondary {
-    background-color:black;
-    border: white
-}
 
 .bg-dark {
     color: white;
     background-color: #cccccc;
-    background-image: url(../images/w0lcHA.gif);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: grey;
+
 
   
 }
 
-.theater-card, .movie-card, .restaurant-card, .theaterMovieCard {
+.theater-card, .movie-card, .restaurant-card, .theaterMovieCard, .bg-secondary {
     color: white;
     background-color: #cccccc;
-    background-image: url(../images/blackSmoke.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url(../images/gun_metal.png);
+    background-repeat: repeat;
+    /* background-size: cover; */
     
 }
 
