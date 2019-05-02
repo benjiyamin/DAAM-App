@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Roboto', sans-serif;
 }
@@ -8,12 +7,10 @@ body {
     border-color: #007bff
 }
 
-
 .bg-dark {
     color: white;
     background-color: #cccccc;
-    background-image: grey;
-    
+    background-image: grey;    
 }
 
 .theater-card, .movie-card, .restaurant-card, .theaterMovieCard, .bg-secondary {
@@ -21,16 +18,10 @@ body {
     background-color: #cccccc;
     background-image: url("../images/gun_metal.png");
     background-repeat: repeat;
-    
 }
 
 .background-image{
-    background-image: url("../images/datenight3.jpg") !important;
+    background-image: url("../images/datenight3.jpg");
     background-size: 100%;
     opacity: 0.75;
-}
-
-.app-description {
-    color: white !important;
-
 }

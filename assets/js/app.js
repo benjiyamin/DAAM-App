@@ -61,7 +61,7 @@ function Application(storage) {
   let geoUser = 'mohican'
   let uberToken = 'VueW1n9COS5QSaDnRzfYKJjI26euN7SN_QiYHEVS'
 
-  this.inputsValid = function() {
+  this.inputsValid = function () {
     let zipCode = $('#zipCodeInput').val().trim()
     let date = $('#dateInput').val().trim()
     let startTime = $('#startTimeInput').val().trim()
@@ -71,7 +71,7 @@ function Application(storage) {
     }
   }
 
-  this.setNavs = function() {
+  this.setNavs = function () {
     $('#myTab a').not('#home-tab').addClass('disabled')
     if (this.inputsValid()) {
       $('#movies-tab').removeClass('disabled')
@@ -466,14 +466,18 @@ function Application(storage) {
   })
 
   $('#restaurantNext, #summary-tab').on('click', function () {
-    //grab movie image
-    //grab movie name
-    //grab movie theater
-    //grab restaurant name
-    //restaurant rating
-    //restaurant price
-    //restaurant location
+    $('#summaryMovie').text(self.movie.title)
+    $('#summaryTheater').text(self.showtime.theatre.name)
+    $('#summaryShowtime').text()
+    $('#summaryRestaurant').text(self.restaurant.name)
+    $('#summaryRating').text(starsHtml(self.restaurant.rating))
+    $('#summaryPrice').text(self.restaurant.price)
+    $('#summaryInfo').text()
+    $('#summaryPhone').text(formattedPhone(self.restaurant.phone))
+    $('#summaryDistance').text()
+    $('#summaryCost').text()
     self.loadRides()
+
   })
 
   $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
