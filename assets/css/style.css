@@ -1,11 +1,23 @@
 body {
-    /*font-family: 'Libre Baskerville', serif;*/
-    font-family: 'Roboto', "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: 'Roboto', sans-serif;
 }
 
 .card.selected {
     border-width: 2px;
     border-color: #007bff
+}
+
+.bg-dark {
+    color: white;
+    background-color: #cccccc;
+    background-image: grey;    
+}
+
+.theater-card, .movie-card, .restaurant-card, .theaterMovieCard, .bg-secondary {
+    color: white;
+    background-color: #cccccc;
+    background-image: url("../images/gun_metal.png");
+    background-repeat: repeat;
 }
 
 .background-image{
