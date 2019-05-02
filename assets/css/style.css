@@ -24,3 +24,14 @@ body {
     background-color: #cccccc;
     background-image: radial-gradient(rgb(90, 90, 90), black);
 }
+
+.background-image{
+    background-image: url("../images/datenight3.jpg") !important;
+    background-size: 100%;
+    opacity: 0.75;
+}
+
+.app-description {
+    color: white !important;
+
+}
