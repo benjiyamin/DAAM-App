@@ -30,3 +30,8 @@ body {
     background-size: 100%;
     opacity: 0.75;
 }
+
+.app-description {
+    color: white !important;
+
+}
