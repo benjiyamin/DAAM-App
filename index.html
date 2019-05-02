@@ -14,9 +14,11 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="assets/css/style.css">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -185,70 +187,70 @@
               </div>
             </div>
             <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-              <h1 class="text-center">Presented by Prestige Worldwide</h1>
-              <div class="summaryResult">
-
-                <div id="movieSelected">
-                  <div class="card mb-3 text-center">
-                    <div class="card-header text-white bg-dark text-center">
-                      Your Movie & Theater Selection
-                    </div>
-                    <div class="row no-gutters">
+              <h1 class="text-center">Your Plans</h1>
+              <hr>
+              <div class="row">
+                <div class="col">
+                  <h2 class="text-center">Movie</h2>
+                  <div class="card h-100 shadow">
+                    <div class="row h-100 no-gutters">
                       <div class="col-md-4">
-                        <!-- insert movie src in img -->
-                        <img class="card-img" src="assets/images/default-movie.png" alt="Movie Poster">
+                        <img class="card-img h-100" src="assets/images/default-movie.png" alt="Movie Poster"
+                          id="summaryPoster">
                       </div>
-                      <div class="col-md-8 text-white theaterMovieCard">
+                      <div class="col-md-8">
                         <div class="card-body">
-                          <!-- Movie Title's Name -->
-                          <h5 class="movieName"></h5>
-
-                          <!-- Theater's Name -->
-                          <p class="theaterName"></p>
-                          <!-- Time selected -->
-                          <p class="showTime"></p>
+                          <h5 class="card-title" id="summaryMovie"></h5>
+                          <p class="card-text" id="summaryTheater"></p>
+                          <p class="card-text" id="summaryShowtime"></p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div id="restaurantSelected">
-                  <div class="card">
-                    <div class="card-header text-white bg-dark text-center">
-                      Your Restaurant Selection
-                    </div>
-                    <div class="card-body text-white bg-secondary">
-                      <!-- Restaurant's Name -->
-                      <h5 class="restaurantName"></h5>
+                <div class="col">
+                  <h2 class="text-center">Dinner</h2>
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <h5 class="card-title" id="summaryRestaurant"></h5>
                       <div class="row card-text">
                         <div class="col">
                           <!-- Star rating -->
-                          <p class="starRating"></p>
+                          <p id="summaryRating"></p>
                           <!-- $$ for price & Food type -->
-                          <p class="price"> | <span class=foodType></span></p>
+                          <p> <span id="summaryPrice"></span> | <span id="summaryInfo"></span></p>
                         </div>
                         <div class="col text-right">
                           <!-- Number -->
-                          <p class=restaurantNumber></p>
-                          <!-- Addrress -->
-                          <p class="restaurantAddress"></p>
+                          <p id="summaryPhone"></p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div id="price">
-                  <div class="card-header text-white bg-dark text-center">
-                    Your Uber Estimate is
-                  </div>
-                  <div class="card-body text-white bg-secondary text-center">
-                    <!-- Uber cost -->
-                    <h5>$<span class=uberEstimate></span></h5>
+                <div class="col">
+                  <h2 class="text-center">Ride</h2>
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <h5 class="card-title">UBER</h5>
+                      <div class="row card-text">
+                        <div class="col">
+                          <!-- Distance -->
+                          <p id="summaryDistance"></p>
+                        </div>
+                        <div class="col text-right">
+                          <!-- Cost -->
+                          <p id="summaryCost"></p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="row">
+
+              </div>
+
               <div class="fixed-bottom">
                 <div class="container">
                   <div class="navbar navbar-light bg-light justify-content-between">
