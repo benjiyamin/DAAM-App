@@ -346,6 +346,22 @@ function Application(storage) {
     })
   }
 
+  this.renderRides = function() {
+    console.log(self.rides)
+    $summaryUber = $('#summaryUber')
+    $summaryUber.empty()
+    this.rides.forEach(ride => {
+      console.log(ride)
+      let tdName = $('<td>').text(ride.display_name)
+      let tdEstimate = $('<td>')
+      .addClass('text-right')
+      .text(ride.estimate)
+      let tr = $('<tr>').append(tdName, tdEstimate)
+      console.log($summaryUber)
+      $summaryUber.append(tr)
+    });
+  }
+
   this.loadRides = function () {
     let startLat = this.showtime.theatre.coordinates.lat
     let startLng = this.showtime.theatre.coordinates.lng
@@ -361,6 +377,7 @@ function Application(storage) {
       dataType: 'json',
     }).done(function (data) {
       self.rides = data.prices
+      self.renderRides()
     })
   }
 
@@ -466,15 +483,13 @@ function Application(storage) {
   $('#restaurantNext, #summary-tab').on('click', function () {
     $('#summaryMovie').text(self.movie.title)
     $('#summaryTheater').text(self.showtime.theatre.name)
-    $('#summaryShowtime').text()
+    $('#summaryShowtime').text(moment(self.showtime.dateTime).format('h:mm a'))
     $('#summaryPoster').attr('src', self.movie.poster)
     $('#summaryRestaurant').text(self.restaurant.name)
     $('#summaryRating').html(starsHtml(self.restaurant.rating))
     $('#summaryPrice').text(self.restaurant.price)
-    $('#summaryInfo').text()
+    $('#summaryInfo').text(categoryString(self.restaurant.categories))
     $('#summaryPhone').text(formattedPhone(self.restaurant.phone))
-    $('#summaryDistance').text()
-    $('#summaryCost').text()
     self.loadRides()
   })
 

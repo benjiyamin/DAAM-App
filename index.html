@@ -193,64 +193,53 @@
             <h1 class="text-center animated slideInDown">Presented by Prestige Worldwide</h1>
             <div class="summaryResult">
 
-              <div class="row">
-                <div class="col">
-                  <h2 class="text-center">Movie</h2>
-                  <div class="card shadow">
-                    <div class="row no-gutters">
-                      <div class="col-md-4">
-                        <img class="card-img h-100" src="assets/images/default-movie.png" alt="Movie Poster"
-                          id="summaryPoster">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title" id="summaryMovie"></h5>
-                          <p class="card-text" id="summaryTheater"></p>
-                          <p class="card-text" id="summaryShowtime"></p>
-                        </div>
+              <div class="row card-deck">
+
+                <div class="card shadow">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img class="card-img h-100" src="assets/images/default-movie.png" alt="Movie Poster"
+                        id="summaryPoster">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title" id="summaryMovie"></h5>
+                        <p class="card-text" id="summaryShowtime"></p>
+                        <p class="card-text" id="summaryTheater"></p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="col">
-                  <h2 class="text-center">Dinner</h2>
-                  <div class="card shadow">
-                    <div class="card-body">
-                      <h5 class="card-title" id="summaryRestaurant"></h5>
-                      <div class="row card-text">
-                        <div class="col">
-                          <!-- Star rating -->
-                          <p id="summaryRating"></p>
-                          <!-- $$ for price & Food type -->
-                          <p> <span id="summaryPrice"></span> | <span id="summaryInfo"></span></p>
-                        </div>
-                        <div class="col text-right">
-                          <!-- Number -->
-                          <p id="summaryPhone"></p>
-                        </div>
+                <div class="card shadow">
+                  <div class="card-body">
+                    <h5 class="card-title" id="summaryRestaurant"></h5>
+                    <div class="row card-text">
+                      <div class="col">
+                        <!-- Star rating -->
+                        <p id="summaryRating"></p>
+                        <!-- $$ for price & Food type -->
+                        <p> <span id="summaryPrice"></span> | <span id="summaryInfo"></span></p>
+                      </div>
+                      <div class="col text-right">
+                        <!-- Number -->
+                        <p id="summaryPhone"></p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col">
-                  <h2 class="text-center">Ride</h2>
-                  <div class="card shadow">
-                    <div class="card-body">
-                      <h5 class="card-title">UBER</h5>
-                      <div class="row card-text">
-                        <div class="col">
-                          <!-- Distance -->
-                          <p id="summaryDistance"></p>
-                        </div>
-                        <div class="col text-right">
-                          <!-- Cost -->
-                          <p id="summaryCost"></p>
-                        </div>
-                      </div>
-                    </div>
+
+                <div class="card shadow">
+                  <div class="card-body">
+                    <h5 class="card-title">UBER</h5>
+                    <table class="table card-text">
+                      <tbody id="summaryUber">
+
+                      </tbody>
+                    </table>
                   </div>
                 </div>
+
               </div>
 
               <div class="row">
