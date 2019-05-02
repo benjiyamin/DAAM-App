@@ -14,15 +14,18 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Gugi|Pragati+Narrow|Roboto" rel="stylesheet">
 </head>
 
 <body>
   <div class="wrapper">
-    <nav class="navbar navbar-dark bg-dark">
-      <span class="navbar-brand mb-0 h1">Dinner and a Movie</span>
+    <nav class="navbar navbar-dark bg-dark text-center">
+      <span class="text-center navbar-brand mb-0 h1">Dinner and a Movie</span>
     </nav>
 
     <header class="bg-primary text-white py-5 mb-5 background-image" id="landing">
@@ -77,6 +80,9 @@
           </div>
         </div>
       </div>
+
+      </div>
+
     </header>
 
     <div class="container mt-4" id="results" style="display: none">
@@ -113,7 +119,7 @@
             <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
             </div>
             <div class="tab-pane fade pt-4" id="movies" role="tabpanel" aria-labelledby="theaters-tab">
-              <h1>Movies showing in <span class="font-italic font-weight-bold" id="movieZipcode"></span>
+              <h1 class ="animated slideInLeft">Movies showing in <span class="font-italic font-weight-bold" id="movieZipcode"></span>
               </h1>
               <div class="text-center" id="moviesLoading">
                 <div class="spinner-border" role="status">
@@ -134,7 +140,7 @@
               </div>
             </div>
             <div class="tab-pane fade pt-4" id="showtimes" role="tabpanel" aria-labelledby="showtimes-tab">
-              <h1>Showtimes for <span class="font-italic font-weight-bold" id="movieTitle"></span> in <span
+              <h1 class ="animated slideInLeft">Showtimes for <span class="font-italic font-weight-bold" id="movieTitle"></span> in <span
                   class="font-italic font-weight-bold" id="theaterZipcode"></span>
               </h1>
               <div class="text-center" id="showtimesLoading">
@@ -157,7 +163,7 @@
               </div>
             </div>
             <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
-              <h1>Restaurants near <span class="font-italic font-weight-bold" id="theaterName"></span></h1>
+              <h1 class ="animated slideInLeft">Restaurants near <span class="font-italic font-weight-bold" id="theaterName"></span></h1>
               <div id="restaurantResults"></div>
               <div class="text-center" id="restaurantsLoading">
                 <div class="spinner-border" role="status">
@@ -182,7 +188,7 @@
               </div>
             </div>
             <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-              <h1 class="text-center">Presented by Prestige Worldwide</h1>
+              <h1 class="text-center animated slideInDown">Presented by Prestige Worldwide</h1>
               <div class="summaryResult">
 
                 <div id="movieSelected">
@@ -243,6 +249,12 @@
                   <div class="card-body text-white bg-secondary text-center">
                     <!-- Uber cost -->
                     <h5>$<span class=uberEstimate></span></h5>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class ="col-12 google-map">
+                    
                   </div>
                 </div>
               </div>
