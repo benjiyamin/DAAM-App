@@ -23,6 +23,7 @@ body {
 .theater-card, .movie-card, .restaurant-card, .theaterMovieCard, .bg-secondary {
     color: white;
     background-color: #cccccc;
+<<<<<<< HEAD
     background-image: url(../images/gun_metal.png);
     background-repeat: repeat;
     /* background-size: cover; */
@@ -32,4 +33,18 @@ body {
 
 .google-map {
     max-height: 400px;
+=======
+    background-image: radial-gradient(rgb(90, 90, 90), black);
+}
+
+.background-image{
+    background-image: url("../images/datenight3.jpg") !important;
+    background-size: 100%;
+    opacity: 0.75;
+}
+
+.app-description {
+    color: white !important;
+
+>>>>>>> ee855be4643571032ee1fcad9e62487831620f2b
 }
