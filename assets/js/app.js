@@ -110,6 +110,7 @@ function Application(storage) {
       }).done(function (data) {
         if (/(jpg|gif|png|JPG|GIF|PNG|JPEG|jpeg)$/.test(data.Poster)) { // image url as input
           cardImg.attr('src', data.Poster)
+          movie.poster = data.Poster
         } else {
           cardImg.attr('src', 'assets/images/default-movie.png')
         }
@@ -314,16 +315,13 @@ function Application(storage) {
   }
 
   this.loadTheaterLocation = function (location) {
-    let queryUrl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=1&term=" + location + '&location=' + self.zipCode;
+    let queryUrl = 'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=' + location + '&inputtype=textquery&key=' + gmapsApi + '&fields=name,formatted_address,geometry'
     $.ajax({
       url: queryUrl,
-      headers: {
-        'Authorization': 'Bearer ' + yelpApi,
-      },
       method: 'GET',
       dataType: 'json',
     }).done(function (data) {
-      self.showtime.theatre.coordinates = data.businesses[0].coordinates
+      self.showtime.theatre.coordinates = data.candidates[0].geometry.location
     })
   }
 
@@ -349,8 +347,8 @@ function Application(storage) {
   }
 
   this.loadRides = function () {
-    let startLat = this.showtime.theatre.coordinates.latitude
-    let startLng = this.showtime.theatre.coordinates.longitude
+    let startLat = this.showtime.theatre.coordinates.lat
+    let startLng = this.showtime.theatre.coordinates.lng
     let endLat = this.restaurant.coordinates.latitude
     let endLng = this.restaurant.coordinates.longitude
     let queryUrl = 'https://cors-anywhere.herokuapp.com/https://api.uber.com/v1.2/estimates/price?start_latitude=' + startLat + '&start_longitude=' + startLng + '&end_latitude=' + endLat + '&end_longitude=' + endLng
@@ -469,15 +467,15 @@ function Application(storage) {
     $('#summaryMovie').text(self.movie.title)
     $('#summaryTheater').text(self.showtime.theatre.name)
     $('#summaryShowtime').text()
+    $('#summaryPoster').attr('src', self.movie.poster)
     $('#summaryRestaurant').text(self.restaurant.name)
-    $('#summaryRating').text(starsHtml(self.restaurant.rating))
+    $('#summaryRating').html(starsHtml(self.restaurant.rating))
     $('#summaryPrice').text(self.restaurant.price)
     $('#summaryInfo').text()
     $('#summaryPhone').text(formattedPhone(self.restaurant.phone))
     $('#summaryDistance').text()
     $('#summaryCost').text()
     self.loadRides()
-
   })
 
   $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
