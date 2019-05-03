@@ -57,3 +57,7 @@ body {
     font-size: 32px;
     text-align: center;
 }
+
+.movieImg {
+    background-image: url("../images/theater.jpg")
+}
