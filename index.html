@@ -198,7 +198,7 @@
                 <div class="card shadow">
                   <div class="row no-gutters">
                     <div class="col-md-4">
-                      <img class="card-img h-100" src="assets/images/default-movie.png" alt="Movie Poster"
+                      <img class="card-img" src="assets/images/default-movie.png" alt="Movie Poster"
                         id="summaryPoster">
                     </div>
                     <div class="col-md-8">
@@ -242,15 +242,12 @@
 
               </div>
 
-              <div class="row">
-                <div class="col-12 google-map">
-
+              <div class="row mt-4">
+                <div class="col-12" id="map">
                 </div>
               </div>
             </div>
-            <div class="row">
 
-            </div>
 
             <div class="fixed-bottom">
               <div class="container">
@@ -299,21 +296,13 @@
       app.renderCurrentDate()
       app.renderCurrentTime()
 
-      $('#homeNext').on('click', function () {
-        let $nextTab = $('#movies-tab')
-        $nextTab.removeClass('disabled')
-        $nextTab.tab('show')
-        $nextTab.addClass('disabled')
-        $('#landing').hide()
-        $('#results').show()
-      })
-
-      $('#home-tab').on('click', function () {
-        $('#results').hide()
-        $('#landing').show()
-      })
     })
   </script>
+
+  <script src="assets/js/maps.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWFMiZeZwNNAdJUZsfMZ7edVnxgLOSfDs&callback=initMap"
+    async defer></script>
+
 </body>
 
 </html>
