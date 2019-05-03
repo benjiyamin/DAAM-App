@@ -28,12 +28,20 @@
       <span class="text-center navbar-brand mb-0 h1">Dinner & Movie</span>
     </nav>
 
+<<<<<<< HEAD
     <header class="text-white py-5 md-5 img-responsive img-fluid background-image" id="landing">
 
       <div class="container h-100">
         <div class="row h-100 align-items-center">
           <div class="col-lg-8">
             <h1 class="display-4 mt-5 mb-2 animated fadeInDown">Plan your night out</h1>
+=======
+    <header class="bg-primary text-white py-5 background-image" id="landing">
+      <div class="container h-100">
+        <div class="row h-100 align-items-center">
+          <div class="col-lg-8">
+            <h1 class="display-4 mt-5 mb-2">Plan your night out</h1>
+>>>>>>> 521be1b2e8c4b1384c0d780fce79fe4629705d39
             <p class="lead mb-5 text-white">Welcome to Dinner and a Movie application. Please type in a zip code close
               to where you will be wanting to see your movie. This application will take you throught the rest of the
               process of planning your evening out. We hope you enjoy your experience!</p>
@@ -84,6 +92,7 @@
         </div>
       </div>
 
+<<<<<<< HEAD
       <div class="row">
         <div class="col">
 
@@ -97,6 +106,10 @@
 
   </div>
 
+=======
+  </div>
+
+>>>>>>> 521be1b2e8c4b1384c0d780fce79fe4629705d39
   </header>
 
   <div class="container mt-4" id="results" style="display: none">
@@ -202,6 +215,7 @@
             </div>
           </div>
           <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+<<<<<<< HEAD
             <h1 class="text-center animated tada">Presented by Prestige Worldwide</h1>
             <div class="summaryResult">
 
@@ -213,20 +227,40 @@
                   <div class="row no-gutters">
                     <div class="col-md-4">
                       <img class="card-img h-100" src="assets/images/default-movie.png" alt="Movie Poster"
+=======
+            <h1 class="text-center animated slideInDown">Presented by Prestige Worldwide</h1>
+            <div class="summaryResult">
+
+              <div class="row card-deck">
+
+                <div class="card shadow">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img class="card-img" src="assets/images/default-movie.png" alt="Movie Poster"
+>>>>>>> 521be1b2e8c4b1384c0d780fce79fe4629705d39
                         id="summaryPoster">
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
                         <h5 class="card-title" id="summaryMovie"></h5>
+<<<<<<< HEAD
                         <p class="card-text" id="summaryTheater"></p>
                         <p class="card-text" id="summaryShowtime"></p>
+=======
+                        <p class="card-text" id="summaryShowtime"></p>
+                        <p class="card-text" id="summaryTheater"></p>
+>>>>>>> 521be1b2e8c4b1384c0d780fce79fe4629705d39
                       </div>
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
               </div>
               <div class="col">
                 <h2 class="text-center">Dinner</h2>
+=======
+
+>>>>>>> 521be1b2e8c4b1384c0d780fce79fe4629705d39
                 <div class="card shadow">
                   <div class="card-body">
                     <h5 class="card-title" id="summaryRestaurant"></h5>
@@ -236,6 +270,7 @@
                         <p id="summaryRating"></p>
                         <!-- $$ for price & Food type -->
                         <p> <span id="summaryPrice"></span> | <span id="summaryInfo"></span></p>
+<<<<<<< HEAD
                       </div>
                       <div class="col text-right">
                         <!-- Number -->
@@ -258,12 +293,19 @@
                       <div class="col text-right">
                         <!-- Cost -->
                         <p id="summaryCost"></p>
+=======
+                      </div>
+                      <div class="col text-right">
+                        <!-- Number -->
+                        <p id="summaryPhone"></p>
+>>>>>>> 521be1b2e8c4b1384c0d780fce79fe4629705d39
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
+<<<<<<< HEAD
 
               <div class="row">
                 <div class="col-12 googleMap">
@@ -271,13 +313,34 @@
                     src="https://maps.google.com/maps?hl=en&amp;q=+(Title)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                   </iframe>
+=======
+                <div class="card shadow">
+                  <div class="card-body">
+                    <h5 class="card-title">UBER</h5>
+                    <table class="table card-text">
+                      <tbody id="summaryUber">
+
+                      </tbody>
+                    </table>
+                  </div>
+>>>>>>> 521be1b2e8c4b1384c0d780fce79fe4629705d39
                 </div>
+
               </div>
 
+<<<<<<< HEAD
             </div>
             <div class="row">
 
             </div>
+=======
+              <div class="row mt-4">
+                <div class="col-12" id="map">
+                </div>
+              </div>
+            </div>
+
+>>>>>>> 521be1b2e8c4b1384c0d780fce79fe4629705d39
 
             <div class="fixed-bottom">
               <div class="container">
@@ -296,7 +359,10 @@
     </div>
   </div>
   </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 521be1b2e8c4b1384c0d780fce79fe4629705d39
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -327,21 +393,13 @@
       app.renderCurrentDate()
       app.renderCurrentTime()
 
-      $('#homeNext').on('click', function () {
-        let $nextTab = $('#movies-tab')
-        $nextTab.removeClass('disabled')
-        $nextTab.tab('show')
-        $nextTab.addClass('disabled')
-        $('#landing').hide()
-        $('#results').show()
-      })
-
-      $('#home-tab').on('click', function () {
-        $('#results').hide()
-        $('#landing').show()
-      })
     })
   </script>
+
+  <script src="assets/js/maps.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWFMiZeZwNNAdJUZsfMZ7edVnxgLOSfDs&callback=initMap"
+    async defer></script>
+
 </body>
 
 </html>
