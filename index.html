@@ -28,7 +28,7 @@
       <span class="text-center navbar-brand mb-0 h1">Dinner and a Movie</span>
     </nav>
 
-    <header class="bg-primary text-white py-5 background-image" id="landing">
+    <header class="bg-white text-white py-5 background-image" id="landing">
       <div class="container h-100">
         <div class="row h-100 align-items-center">
           <div class="col-lg-8">
@@ -190,8 +190,8 @@
             </div>
           </div>
           <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-            <h1 class="text-center animated slideInDown">Presented by Prestige Worldwide</h1>
-            <div class="summaryResult">
+            <!--<h1 class="text-center animated slideInDown">Summary</h1>-->
+            <div class="mt-4">
 
               <div class="row card-deck">
 
@@ -206,6 +206,12 @@
                         <h5 class="card-title" id="summaryMovie"></h5>
                         <p class="card-text" id="summaryShowtime"></p>
                         <p class="card-text" id="summaryTheater"></p>
+                        <p class="card-text" id="summaryTheaterAddress"></p>
+                        <div class="row">
+                          <div class="col" id="fandangoBtnWrapper">
+
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -217,14 +223,17 @@
                     <div class="row card-text">
                       <div class="col">
                         <!-- Star rating -->
+                        <p id="summaryPhone"></p>
                         <p id="summaryRating"></p>
                         <!-- $$ for price & Food type -->
                         <p> <span id="summaryPrice"></span> | <span id="summaryInfo"></span></p>
+                        <p id="summaryRestaurantAddress"></p>
                       </div>
+                      <!-- 
                       <div class="col text-right">
-                        <!-- Number -->
                         <p id="summaryPhone"></p>
                       </div>
+                    -->
                     </div>
                   </div>
                 </div>

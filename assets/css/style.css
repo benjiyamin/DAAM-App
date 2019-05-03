@@ -51,3 +51,11 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.text-description {
+    color: #ccc
+}
+
+.btn-fandango {
+    background: #fe7900
+}
