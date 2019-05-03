@@ -121,12 +121,15 @@ function Application(storage) {
       let name = $('<h5>')
         .addClass('card-title')
         .text(movie.title + ' (' + movie.releaseYear + ')')
-      let rating = $('<p>')
-        .addClass('card-text')
-        .text(runtimeMinutes(movie.runTime) + ' min')
       let cardBody = $('<div>')
         .addClass('card-body')
-        .append(name, rating)
+        .append(name)
+      if (movie.runTime) {
+        let rating = $('<p>')
+          .addClass('card-text')
+          .text(runtimeMinutes(movie.runTime) + ' min')
+        cardBody.append(rating)
+      }
       let info = $('<div>')
         .addClass('col-md-8')
         .append(cardBody)
@@ -426,8 +429,8 @@ function Application(storage) {
     let endLat = this.restaurant.coordinates.latitude
     let endLng = this.restaurant.coordinates.longitude
     var myLatLng = {
-      lat: (startLat + endLat) / 2,  // Average Lat
-      lng: (startLng + endLng) / 2   // Average Lng
+      lat: (startLat + endLat) / 2, // Average Lat
+      lng: (startLng + endLng) / 2 // Average Lng
     };
     var mapOptions = {
       center: myLatLng,
