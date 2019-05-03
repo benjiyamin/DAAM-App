@@ -10,17 +10,21 @@ body {
 .bg-dark {
     color: white;
     background-color: #cccccc;
-    background-image: grey;    
+    background-image: grey;
 }
 
-.theater-card, .movie-card, .restaurant-card, .theaterMovieCard, .bg-secondary {
+.theater-card,
+.movie-card,
+.restaurant-card,
+.theaterMovieCard,
+.bg-secondary {
     color: white;
     background-color: #cccccc;
     background-image: url("../images/gun_metal.png");
     background-repeat: repeat;
 }
 
-.background-image{
+.background-image {
     background-image: url("../images/datenight3.jpg");
     background-size: 100%;
     opacity: 0.75;
@@ -30,4 +34,20 @@ body {
     width: 100%;
     height: 400px;
     margin: 10px auto;
+}
+
+#landing {
+    /* Sizing */
+    width: 100%;
+    /*height: 80vh;*/
+    height: calc(100vh - 56px);
+
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
