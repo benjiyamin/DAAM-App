@@ -346,6 +346,19 @@ function Application(storage) {
     })
   }
 
+  this.renderRides = function () {
+    $summaryUber = $('#summaryUber')
+    $summaryUber.empty()
+    this.rides.forEach(ride => {
+      let tdName = $('<td>').text(ride.display_name)
+      let tdEstimate = $('<td>')
+        .addClass('text-right')
+        .text(ride.estimate)
+      let tr = $('<tr>').append(tdName, tdEstimate)
+      $summaryUber.append(tr)
+    });
+  }
+
   this.loadRides = function () {
     let startLat = this.showtime.theatre.coordinates.lat
     let startLng = this.showtime.theatre.coordinates.lng
@@ -361,6 +374,7 @@ function Application(storage) {
       dataType: 'json',
     }).done(function (data) {
       self.rides = data.prices
+      self.renderRides()
     })
   }
 
@@ -404,6 +418,51 @@ function Application(storage) {
   this.renderCurrentTime = function () {
     $('#startTimeInput').val(moment().format('HH:mm'))
     $('#endTimeInput').val(moment().endOf('day').format('HH:mm'))
+  }
+
+  this.renderTravel = function () {
+    let startLat = this.showtime.theatre.coordinates.lat
+    let startLng = this.showtime.theatre.coordinates.lng
+    let endLat = this.restaurant.coordinates.latitude
+    let endLng = this.restaurant.coordinates.longitude
+    var myLatLng = {
+      lat: (startLat + endLat) / 2,  // Average Lat
+      lng: (startLng + endLng) / 2   // Average Lng
+    };
+    var mapOptions = {
+      center: myLatLng,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    let map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    //create a DirectionsService object to use the route method and get a result for our request
+    var directionsService = new google.maps.DirectionsService();
+    //create a DirectionsRenderer object which we will use to display the route
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    //bind the DirectionsRenderer to the map
+    directionsDisplay.setMap(map);
+    var request = {
+      origin: startLat + ', ' + startLng,
+      destination: endLat + ', ' + endLng,
+      travelMode: google.maps.TravelMode.DRIVING, //WALKING, BYCYCLING, TRANSIT
+      unitSystem: google.maps.UnitSystem.IMPERIAL
+    }
+    //pass the request to the route method
+    directionsService.route(request, function (result, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        //display route
+        directionsDisplay.setDirections(result);
+      } else {
+        //delete route from map
+        directionsDisplay.setDirections({
+          routes: []
+        });
+        //center map in London
+        map.setCenter(myLatLng);
+      }
+    });
+
+
   }
 
   $('.btn-prev').on('click', function () {
@@ -466,21 +525,34 @@ function Application(storage) {
   $('#restaurantNext, #summary-tab').on('click', function () {
     $('#summaryMovie').text(self.movie.title)
     $('#summaryTheater').text(self.showtime.theatre.name)
-    $('#summaryShowtime').text()
+    $('#summaryShowtime').text(moment(self.showtime.dateTime).format('h:mm a'))
     $('#summaryPoster').attr('src', self.movie.poster)
     $('#summaryRestaurant').text(self.restaurant.name)
     $('#summaryRating').html(starsHtml(self.restaurant.rating))
     $('#summaryPrice').text(self.restaurant.price)
-    $('#summaryInfo').text()
+    $('#summaryInfo').text(categoryString(self.restaurant.categories))
     $('#summaryPhone').text(formattedPhone(self.restaurant.phone))
-    $('#summaryDistance').text()
-    $('#summaryCost').text()
     self.loadRides()
+    self.renderTravel()
   })
 
   $('#zipCodeInput, #dateInput, #startTimeInput, #endTimeInput').on('blur', function () {
     self.checkInputs()
     self.setNavs()
+  })
+
+  $('#homeNext').on('click', function () {
+    let $nextTab = $('#movies-tab')
+    $nextTab.removeClass('disabled')
+    $nextTab.tab('show')
+    $nextTab.addClass('disabled')
+    $('#landing').hide()
+    $('#results').show()
+  })
+
+  $('#home-tab').on('click', function () {
+    $('#results').hide()
+    $('#landing').show()
   })
 
 }
