@@ -21,7 +21,9 @@ body {
 .movie-card,
 .restaurant-card,
 .theaterMovieCard,
-.bg-secondary {
+.bg-secondary,
+.shadow,
+td {
     color: white;
     background-color: #cccccc;
     background-image: url("../images/gun_metal.png");
