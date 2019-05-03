@@ -1,5 +1,9 @@
 body {
     font-family: 'Roboto', sans-serif;
+    background-image: url("../images/ivan-jevtic-279864-unsplash.jpg");
+    background-size: cover;
+    width: 100%;
+    height:calc(100vh - 56px);;
 }
 
 .card.selected {
@@ -27,7 +31,7 @@ body {
 .background-image {
     background-image: url("../images/datenight3.jpg");
     background-size: 100%;
-    opacity: 0.75;
+    /* opacity: 0.75; */
 }
 
 #map {
@@ -56,8 +60,47 @@ body {
     font-family: 'Playfair Display SC', serif;
     font-size: 32px;
     text-align: center;
+    color: white;
 }
 
 .movieImg {
     background-image: url("../images/theater.jpg")
+}
+
+/* .btn-secondary {
+
+} */
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: aqua !important;
+    color: black !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Playfair Display SC', serif;
+}
+
+.btn-secondary {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Playfair Display SC', serif;
+}
+
+.nav-item {
+    color: black;
+}
+
+a > .nav-link > .active {
+    background: teal !important;
+}
+
+.nav-item {
+    background-image: url("../images/prism.png") !important;
+}
+
+h1 {
+    color: white;
 }
