@@ -130,6 +130,10 @@ function Application(storage) {
           .text(runtimeMinutes(movie.runTime) + ' min')
         cardBody.append(rating)
       }
+      let desc = $('<p>')
+        .addClass('card-text text-muted')
+        .text(movie.shortDescription)
+      cardBody.append(desc)
       let info = $('<div>')
         .addClass('col-md-8')
         .append(cardBody)
@@ -187,6 +191,7 @@ function Application(storage) {
         dataType: 'json',
       }).done(function (data) {
         console.log('Requested data loaded')
+        console.log(data)
         self.movies = data
         self.renderMovies()
         storage.add(request = queryUrl, response = data)
@@ -464,8 +469,21 @@ function Application(storage) {
         map.setCenter(myLatLng);
       }
     });
+  }
 
-
+  this.setMinDate = function () {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("dateInput").setAttribute("min", today);
   }
 
   $('.btn-prev').on('click', function () {
