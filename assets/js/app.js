@@ -131,7 +131,7 @@ function Application(storage) {
         cardBody.append(rating)
       }
       let desc = $('<p>')
-        .addClass('card-text text-muted')
+        .addClass('card-text small text-description')
         .text(movie.shortDescription)
       cardBody.append(desc)
       let info = $('<div>')
@@ -211,7 +211,7 @@ function Application(storage) {
           .text(theaterName)
         let address = $('<p>')
           .addClass('card-text')
-          .text('123 Movie Dr') // theater.address
+          .text('') // theater.address
         let location = $('<div>')
           .addClass('col-4')
           .append(name, address)
@@ -330,6 +330,7 @@ function Application(storage) {
       dataType: 'json',
     }).done(function (data) {
       self.showtime.theatre.coordinates = data.candidates[0].geometry.location
+      self.showtime.theatre.address = data.candidates[0].formatted_address
     })
   }
 
@@ -546,9 +547,20 @@ function Application(storage) {
   $('#restaurantNext, #summary-tab').on('click', function () {
     $('#summaryMovie').text(self.movie.title)
     $('#summaryTheater').text(self.showtime.theatre.name)
+    $('#summaryTheaterAddress').text(self.showtime.theatre.address)
     $('#summaryShowtime').text(moment(self.showtime.dateTime).format('h:mm a'))
+    if (self.showtime.ticketURI) {
+      let btn = $('<a>')
+        .addClass('btn btn-fandango text-white')
+        .text('Buy on Fandango')
+        .attr('target', '_blank')
+        .attr('role', 'button')
+        .attr('href', self.showtime.ticketURI)
+      $('#fandangoBtnWrapper').html(btn)
+    }
     $('#summaryPoster').attr('src', self.movie.poster)
     $('#summaryRestaurant').text(self.restaurant.name)
+    $('#summaryRestaurantAddress').text(self.restaurant.location.display_address.join(', '))
     $('#summaryRating').html(starsHtml(self.restaurant.rating))
     $('#summaryPrice').text(self.restaurant.price)
     $('#summaryInfo').text(categoryString(self.restaurant.categories))

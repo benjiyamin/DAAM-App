@@ -3,40 +3,41 @@ body {
 }
 
 .card.selected {
-    border-width: 2px;
+    border-width: 3px;
     border-color: #007bff
 }
 
+/*
 .bg-dark {
     color: white;
     background-color: #cccccc;
     background-image: grey;
 }
+*/
 
-.theater-card,
+/*.theater-card,
 .movie-card,
 .restaurant-card,
 .theaterMovieCard,
-.bg-secondary {
+.bg-secondary,*/
+.card {
     color: white;
     background-color: #cccccc;
     background-image: url("../images/gun_metal.png");
     background-repeat: repeat;
 }
 
+#landing {
+    position: relative;
+}
+
+
 .background-image {
+    position: absolute;
     background-image: url("../images/datenight3.jpg");
     background-size: 100%;
-    opacity: 0.75;
-}
+    /*opacity: 0.75;*/
 
-#map {
-    width: 100%;
-    height: 400px;
-    margin: 10px auto;
-}
-
-#landing {
     /* Sizing */
     width: 100%;
     /*height: 80vh;*/
@@ -50,4 +51,33 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+    margin: 10px auto;
+}
+
+.text-description {
+    color: #ccc
+}
+
+.btn-fandango {
+    background: #fe7900
+}
+
+.navbar-daam {
+    font-family: 'Playfair Display SC', serif;
+    /*font-size: 32px;*/
 }

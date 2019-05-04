@@ -19,16 +19,19 @@
 
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Gugi|Pragati+Narrow|Roboto" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Gugi|Pragati+Narrow|Roboto|Sofia|Great+Vibes|Playfair+Display+SC"
+    rel="stylesheet">
 </head>
 
 <body>
   <div class="wrapper">
-    <nav class="navbar navbar-dark bg-dark text-center">
-      <span class="text-center navbar-brand mb-0 h1">Dinner and a Movie</span>
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand navbar-daam mb-0 h1">Dinner & Movie</span>
     </nav>
 
-    <header class="bg-primary text-white py-5 background-image" id="landing">
+    <header class="bg-white text-white py-5 background-image" id="landing">
+      <div class="overlay"></div>
       <div class="container h-100">
         <div class="row h-100 align-items-center">
           <div class="col-lg-8">
@@ -76,195 +79,202 @@
                 </div>
               </div>
 
-              <button type="button" class="btn btn-dark btn-lg btn-block" id="homeNext">Get Started</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block" id="homeNext">Get Started</button>
 
             </form>
           </div>
         </div>
       </div>
 
-  </div>
+    </header>
 
-  </header>
-
-  <div class="container mt-4" id="results" style="display: none">
-    <div class="row">
-      <div class="col">
-        <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-              aria-selected="true">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" id="movies-tab" data-toggle="tab" href="#movies" role="tab"
-              aria-controls="movies" aria-selected="false"><span class="badge badge-pill badge-light text-dark">1</span>
-              Movies</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" id="showtimes-tab" data-toggle="tab" href="#showtimes" role="tab"
-              aria-controls="showtimes" aria-selected="false"><span
-                class="badge badge-pill badge-light text-dark">2</span> Showtimes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
-              aria-controls="restaurants" aria-selected="false"><span
-                class="badge badge-pill badge-light text-dark">3</span> Restaurants</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
-              aria-controls="summary" aria-selected="false"><span
-                class="badge badge-pill badge-light text-dark">4</span> Summary</a>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
-          </div>
-          <div class="tab-pane fade pt-4" id="movies" role="tabpanel" aria-labelledby="theaters-tab">
-            <h1 class="animated slideInLeft">Movies showing in <span class="font-italic font-weight-bold"
-                id="movieZipcode"></span>
-            </h1>
-            <div class="text-center" id="moviesLoading">
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
+    <div class="container mt-4" id="results" style="display: none">
+      <div class="row">
+        <div class="col">
+          <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" id="movies-tab" data-toggle="tab" href="#movies" role="tab"
+                aria-controls="movies" aria-selected="false"><span
+                  class="badge badge-pill badge-light text-dark">1</span>
+                Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" id="showtimes-tab" data-toggle="tab" href="#showtimes" role="tab"
+                aria-controls="showtimes" aria-selected="false"><span
+                  class="badge badge-pill badge-light text-dark">2</span> Showtimes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab"
+                aria-controls="restaurants" aria-selected="false"><span
+                  class="badge badge-pill badge-light text-dark">3</span> Restaurants</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
+                aria-controls="summary" aria-selected="false"><span
+                  class="badge badge-pill badge-light text-dark">4</span> Summary</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
             </div>
-            <div class="row" id="movieResults" style="margin-bottom:54px;"></div>
-            <div class="fixed-bottom">
-              <div class="container">
-                <div class="navbar navbar-light bg-light justify-content-between">
-                  <div class="navbar-brand"></div>
-                  <div class="form-inline">
-                    <!--<button type="button" class="btn btn-prev btn-secondary">Prev</button>-->
-                    <button type="button" class="btn btn-next btn-primary ml-2" id="movieNext" disabled>Next</button>
-                  </div>
+            <div class="tab-pane fade pt-4" id="movies" role="tabpanel" aria-labelledby="theaters-tab">
+              <h1 class="animated slideInLeft">Movies showing in <span class="font-italic font-weight-bold"
+                  id="movieZipcode"></span>
+              </h1>
+              <div class="text-center" id="moviesLoading">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="tab-pane fade pt-4" id="showtimes" role="tabpanel" aria-labelledby="showtimes-tab">
-            <h1 class="animated slideInLeft">Showtimes for <span class="font-italic font-weight-bold"
-                id="movieTitle"></span> in <span class="font-italic font-weight-bold" id="theaterZipcode"></span>
-            </h1>
-            <div class="text-center" id="showtimesLoading">
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-            </div>
-            <div id="showtimeResults" style="margin-bottom:54px;"></div>
-            <div class="fixed-bottom">
-              <div class="container">
-                <div class="navbar navbar-light bg-light justify-content-between">
-                  <div class="navbar-brand"></div>
-                  <div class="form-inline">
-                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
-                    <button type="button" class="btn btn-next btn-primary ml-2" id="showtimeNext" disabled>Next</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
-            <h1 class="animated slideInLeft">Restaurants near <span class="font-italic font-weight-bold"
-                id="theaterName"></span></h1>
-            <div id="restaurantResults"></div>
-            <div class="text-center" id="restaurantsLoading">
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-            </div>
-            <div class="text-center mt-4 pb-4" style="margin-bottom:54px; display:none;" id="restaurantsLoader">
-              <button type="button" class="btn btn-outline-primary btn-lg btn-block" id="restaurantsBtn">Load more
-                restaurants</button>
-            </div>
-            <div class="fixed-bottom">
-              <div class="container">
-                <div class="navbar navbar-light bg-light justify-content-between">
-                  <div class="navbar-brand"></div>
-                  <div class="form-inline">
-                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
-                    <button type="button" class="btn btn-next btn-primary ml-2" id="restaurantNext"
-                      disabled>Next</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-            <h1 class="text-center animated slideInDown">Presented by Prestige Worldwide</h1>
-            <div class="summaryResult">
-
-              <div class="row card-deck">
-
-                <div class="card shadow">
-                  <div class="row no-gutters">
-                    <div class="col-md-4">
-                      <img class="card-img" src="assets/images/default-movie.png" alt="Movie Poster"
-                        id="summaryPoster">
-                    </div>
-                    <div class="col-md-8">
-                      <div class="card-body">
-                        <h5 class="card-title" id="summaryMovie"></h5>
-                        <p class="card-text" id="summaryShowtime"></p>
-                        <p class="card-text" id="summaryTheater"></p>
-                      </div>
+              <div class="row" id="movieResults" style="margin-bottom:54px;"></div>
+              <div class="fixed-bottom">
+                <div class="container">
+                  <div class="navbar navbar-dark bg-dark justify-content-between">
+                    <div class="text-light">Prestige Worldwide &copy; 2019</div>
+                    <div class="form-inline">
+                      <!--<button type="button" class="btn btn-prev btn-secondary">Prev</button>-->
+                      <button type="button" class="btn btn-next btn-primary ml-2" id="movieNext" disabled>Next</button>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="tab-pane fade pt-4" id="showtimes" role="tabpanel" aria-labelledby="showtimes-tab">
+              <h1 class="animated slideInLeft">Showtimes for <span class="font-italic font-weight-bold"
+                  id="movieTitle"></span> in <span class="font-italic font-weight-bold" id="theaterZipcode"></span>
+              </h1>
+              <div class="text-center" id="showtimesLoading">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div id="showtimeResults" style="margin-bottom:54px;"></div>
+              <div class="fixed-bottom">
+                <div class="container">
+                  <div class="navbar navbar-dark bg-dark justify-content-between">
+                      <div class="text-light">Prestige Worldwide &copy; 2019</div>
+                    <div class="form-inline">
+                      <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                      <button type="button" class="btn btn-next btn-primary ml-2" id="showtimeNext"
+                        disabled>Next</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade pt-4" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
+              <h1 class="animated slideInLeft">Restaurants near <span class="font-italic font-weight-bold"
+                  id="theaterName"></span></h1>
+              <div id="restaurantResults"></div>
+              <div class="text-center" id="restaurantsLoading">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div class="text-center mt-4 pb-4" style="margin-bottom:54px; display:none;" id="restaurantsLoader">
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block" id="restaurantsBtn">Load more
+                  restaurants</button>
+              </div>
+              <div class="fixed-bottom">
+                <div class="container">
+                  <div class="navbar navbar-dark bg-dark justify-content-between">
+                    <div class="text-light">Prestige Worldwide &copy; 2019</div>
+                    <div class="form-inline">
+                      <button type="button" class="btn btn-prev btn-secondary">Prev</button>
+                      <button type="button" class="btn btn-next btn-primary ml-2" id="restaurantNext"
+                        disabled>Next</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+              <!--<h1 class="text-center animated slideInDown">Summary</h1>-->
+              <div class="mt-4">
 
-                <div class="card shadow">
-                  <div class="card-body">
-                    <h5 class="card-title" id="summaryRestaurant"></h5>
-                    <div class="row card-text">
-                      <div class="col">
-                        <!-- Star rating -->
-                        <p id="summaryRating"></p>
-                        <!-- $$ for price & Food type -->
-                        <p> <span id="summaryPrice"></span> | <span id="summaryInfo"></span></p>
+                <div class="row card-deck">
+
+                  <div class="card shadow">
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                        <img class="card-img" src="assets/images/default-movie.png" alt="Movie Poster"
+                          id="summaryPoster">
                       </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title" id="summaryMovie"></h5>
+                          <p class="card-text" id="summaryShowtime"></p>
+                          <p class="card-text" id="summaryTheater"></p>
+                          <p class="card-text" id="summaryTheaterAddress"></p>
+                          <div class="row">
+                            <div class="col" id="fandangoBtnWrapper">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <h5 class="card-title" id="summaryRestaurant"></h5>
+                      <div class="row card-text">
+                        <div class="col">
+                          <p id="summaryRating"></p>
+                          <p> <span id="summaryPrice"></span> | <span id="summaryInfo"></span></p>
+                          <p id="summaryPhone"></p>
+                          <p id="summaryRestaurantAddress"></p>
+                        </div>
+                        <!-- 
                       <div class="col text-right">
-                        <!-- Number -->
                         <p id="summaryPhone"></p>
                       </div>
+                    -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <h5 class="card-title">UBER</h5>
+                      <table class="table card-text text-white">
+                        <tbody id="summaryUber">
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row mt-4" style="margin-bottom:54px;">
+                  <div class="col-12" id="map">
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="fixed-bottom">
+                <div class="container">
+                  <div class="navbar navbar-dark bg-dark justify-content-between">
+                    <div class="text-light">Prestige Worldwide &copy; 2019</div>
+                    <div class="form-inline">
+                      <button type="button" class="btn btn-prev btn-secondary">Prev</button>
                     </div>
                   </div>
                 </div>
-
-                <div class="card shadow">
-                  <div class="card-body">
-                    <h5 class="card-title">UBER</h5>
-                    <table class="table card-text">
-                      <tbody id="summaryUber">
-
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="row mt-4">
-                <div class="col-12" id="map">
-                </div>
               </div>
             </div>
 
-
-            <div class="fixed-bottom">
-              <div class="container">
-                <div class="navbar navbar-light bg-light justify-content-between">
-                  <div class="navbar-brand"></div>
-                  <div class="form-inline">
-                    <button type="button" class="btn btn-prev btn-secondary">Prev</button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- Optional JavaScript -->
