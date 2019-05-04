@@ -1,9 +1,9 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-image: url("../images/ivan-jevtic-279864-unsplash.jpg");
+    background-image: url("../images/movie-background.jpg");
     background-size: cover;
     width: 100%;
-    height:calc(100vh - 56px);;
+    height:calc(100vh - 56px);
 }
 
 .card.selected {
@@ -26,8 +26,9 @@ body {
 td {
     color: white;
     background-color: #cccccc;
-    background-image: url("../images/gun_metal.png");
+    background-image: url("../images/prism.png");
     background-repeat: repeat;
+    /* opacity: .9; */
 }
 
 .background-image {
