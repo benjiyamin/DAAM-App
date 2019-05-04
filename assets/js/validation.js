@@ -5,13 +5,13 @@ $("#zipCodeInput").on("blur", function () {
         console.log("zip is validated")
         $("#invalid-feedback-zip").hide()
         $("#homeNext").attr("disabled", false)
-        $("#zipCodeInput").addClass("form-control")
+        //$("#zipCodeInput").addClass("form-control")
     }
     else {
         $("#invalid-feedback-zip").show()
-        $("#invalid-feedback-zip").text("Please type in the 5 digit zip code.")
+        //$("#invalid-feedback-zip").text("Please type in the 5 digit zip code.")
         $("#homeNext").attr("disabled", true)
-        $("#zipCodeInput").removeClass("form-control")
+        //$("#zipCodeInput").removeClass("form-control")
     }
 })
 window.addEventListener('load', function () {
